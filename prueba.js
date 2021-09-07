@@ -15,14 +15,15 @@
 // }
 
 let numero=prompt("Escriba un numero");
-if(numero >1000){
+if(numero > 1000){
     alert("El numero debe ser menor de 1000")
-}else if( numero => 10 && numero <= 50){
+}else if( numero >= 10 && numero <= 50){
     alert("El numero elegido es " + numero)
 }
 let texto=prompt("Escribi tu consulta");
 if(texto == "Hola"){
     alert("Bienvenid@ en que le podemos ayudar?")
 }
+
 
 

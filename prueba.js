@@ -1,29 +1,25 @@
-// let peso= prompt("ingrese su peso en kg");
-// let altura= prompt("Ingrese su altura");
 
-// let imCorporal= peso/altura;
-// console.log(imCorporal);
 
-// if(imCorporal<=18.5){
-//     alert("Su peso es bajo, se recomienda consultar un profesional");
-// } else if(imCorporal<=26.9){
-//     alert("Se encuentra en buen peso")
-// } else if(imCorporal<=25){
-//     alert("Usted puede tener sobrepeso, se recomienda consultar un profesional")
-// }else{
-//     alert("Usted puede estar padeciendo Obesidad, se recomienda consultar un profesional")
+// ------------------------Entrega 3-----------------
+
+
+// for (let i=1; i<=3;i++){
+//     let nIngresado=parseInt(prompt("Ingrese un numero"));
+//     let nSiguiente= nIngresado+1;
+//     console.log( "El siguiente es: " + nSiguiente )
+// };
+
+
+let nombre=prompt("Ingrese su nombre");
+let turno=1;
+    while(nombre!="Esc" && nombre !="esc" && nombre!=" "){
+        alert("Hola "+nombre+ "\nTe asignamos el turno numero: "+ turno++);
+        nombre=prompt("Ingrese su nombre");
+    }
+
+// let nIngresado =parseInt(prompt("Ingrese un numero"));
+
+// for(let inicio = 1;inicio<=nIngresado;inicio++){
+//     const palabra= "Hola";
+//     console.log(palabra)
 // }
-
-let numero=prompt("Escriba un numero");
-if(numero > 1000){
-    alert("El numero debe ser menor de 1000")
-}else if( numero >= 10 && numero <= 50){
-    alert("El numero elegido es " + numero)
-}
-let texto=prompt("Escribi tu consulta");
-if(texto == "Hola"){
-    alert("Bienvenid@ en que le podemos ayudar?")
-}
-
-
-

@@ -1,25 +1,28 @@
 
 
-// ------------------------Entrega 3-----------------
+// -------------Desafio 4 (Complementario)------
 
-
-// for (let i=1; i<=3;i++){
-//     let nIngresado=parseInt(prompt("Ingrese un numero"));
-//     let nSiguiente= nIngresado+1;
-//     console.log( "El siguiente es: " + nSiguiente )
-// };
-
-
-let nombre=prompt("Ingrese su nombre");
-let turno=1;
-    while(nombre!="Esc" && nombre !="esc" && nombre!=" "){
-        alert("Hola "+nombre+ "\nTe asignamos el turno numero: "+ turno++);
-        nombre=prompt("Ingrese su nombre");
-    }
-
-// let nIngresado =parseInt(prompt("Ingrese un numero"));
-
-// for(let inicio = 1;inicio<=nIngresado;inicio++){
-//     const palabra= "Hola";
-//     console.log(palabra)
+// let precioIngresado=prompt("Ingrese el costo del producto");
+// const costoIva = (x) => x * 0.21;
+// const precioFinal = (y , z) => parseFloat(y) + parseFloat(z);
+// function mostrar(precio){
+//     return precioFinal(costoIva(precio), precio)
 // }
+
+// console.log("El precio final del producto es: " + mostrar(precioIngresado))
+
+
+// Comprobar si numero 1 es multiplo de numero 2
+
+let numero1 =prompt("Ingrese el primer numero");
+let numero2 = prompt("Ingrese el segundo numero");
+const multiplo = (a , b) => a % b;
+function darRespuesta (x, y){
+    if( multiplo(x , y) != 0){
+        return x + " No es multiplo de "+ y;
+    }
+    else{
+        return x + " Es multiplo de " + y;
+    }
+}
+console.log(darRespuesta(numero1, numero2))

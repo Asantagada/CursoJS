@@ -9,12 +9,12 @@ let funciones = new Funciones();
 let idPart = 1;
 let idGasto = 1;
 let opcion;
-
+let saldo= 0;
 alert("Bienvenido a la calculadora Online")
 
 do{
     let nombre= prompt("Ingresa el nombre de un participante de los gastos");
-    let participante = new Participante(idPart, nombre);
+    let participante = new Participante(idPart, nombre, saldo);
     idPart = idPart ++;
     general.personas.push(participante);
     opcion = prompt("Desea Ingresar Otro participante /n Ingrese S o N");
@@ -22,7 +22,7 @@ do{
 
 do{
     let tipo = prompt("De que fue el gasto");
-    let total= prompt("Cual fue el total del gasto");
+    let total= parseFloat(prompt("Cual fue el total del gasto"))
     let quienPago = prompt("Quien pago la totalidad");
     let quienesDividen= [];
     do{

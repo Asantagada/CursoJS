@@ -4,15 +4,6 @@ let opcion;
 let carrito= []
 let opcionCarrito;
 
-const mostrarProductos= ()=>{
-   let menuProductos ="Ingresa con el numero de referencia el producto que quieras agregar al carrito \n"
-   arrayProductos.forEach(producto => {
-      menuProductos += arrayProductos.productId + ".-" + arrayProductos.nombreProducto + "\n"
-   })
-   menuProductos += (arrayProductos.length + 1) + ".-Salir";
-   let eleccionProducto = parseInt(prompt(menuProductos));
-    return eleccionProducto 
-}
 
 do {
 
@@ -25,7 +16,7 @@ do {
     opcion= prompt("Desea Ingresar otro Producto \n Escriba SI para agregarlo")
 }while(opcion== "SI" || opcion == "si" || opcion =="S");
 
-console.log(arrayProductos)
+console.log(arrayProductos);
 
 
 
@@ -36,4 +27,4 @@ do{
     agregarCarrito (opcionCarrito , cantidadDeseada);
     calcularTotal();
     opcion= prompt("Desea Ingresar otro Producto \n Escriba SI para agregarlo")
-}while (opcion== "SI" || opcion == "si" || opcion =="S")
+}while (opcion== "SI" || opcion == "si" || opcion =="S");

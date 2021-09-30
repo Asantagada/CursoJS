@@ -1,67 +1,67 @@
-let arrayProductos = [];
-let productId= 1;
+import {General} from "./Class/General.js"
+import {Participante} from "./Class/Participantes.js"
+import {Gasto} from "./Class/Gastos.js"
+import {Funciones} from "./Class/Funciones.js"
+
+
+let general = new General();
+let funciones = new Funciones();
+let idPart = 1;
+let idGasto = 1;
 let opcion;
-let carrito= []
-let opcionCarrito;
-let ordenxPrecio = [];
+let saldo= 0;
 
-
-
-const verificarStock =(cantidadDeseada, stockDisponible) =>{
-    if(cantidadDeseada >= stockDisponible){
-        return false;
-    }else return true;
+alert("Bienvenido a la calculadora Online");
+// Primero le pedimos al usuario que registre a todos los participantes de 
+// la agenda de gastos y utilizamos la clase participante para generarlos con id, nombre y saldo.
+// Siempre y cuando no halla personas ya registradas, en ese caso se registran nuevos gastos a dividir.
+// localStorage.clear()
+if(localStorage.length !=0) {
+    funciones.obtenerAlmacenados("Participantes", general.personas);
+    alert(funciones.mostrarParticipantes(general))
+    }else{ 
+    do{
+        let nombre= prompt("Ingresa el nombre de un participante de los gastos");
+        nombre= nombre.toUpperCase();
+        let participante = new Participante(idPart, nombre, saldo);
+        idPart = idPart ++;
+        general.personas.push(participante);
+        opcion = prompt("Desea Ingresar Otro participante \nIngrese S o N");
+        opcion= opcion.toUpperCase();
+    } while(opcion == "S");
 }
-
-const agregarCarrito = (opcionCarrito, cantidadDeseada)=>{
-    const buscarProducto = ordenxPrecio.find(producto =>producto.id === opcionCarrito);
-    console.log(buscarProducto)
-    if (verificarStock(cantidadDeseada , buscarProducto.stock)=== false){
-        alert("Lo siento no contamos con esa cantidad");
-    }else carrito.push(buscarProducto)
-}
+funciones.crearLista(general.personas)
 
 
-const mostrarProductos= ()=>{
-    let menuProductos ="Ingresa con el numero de referencia el producto que quieras agregar al carrito \n"
-    ordenxPrecio.forEach(producto => {
-        menuProductos += producto.id + ".-" + producto.nombre + "\n"
-    })
-    menuProductos += (ordenxPrecio.length + 1) + ".-Salir";
-    let eleccionProducto = parseInt(prompt(menuProductos));
-    return eleccionProducto 
-}
+// // Una vez cargados los datos de quienes participan en la agenda cargamos los datos de los gastos.
+// do{
+//     let tipo = prompt("De que fue el gasto");
+//     let total= parseFloat(prompt("Cual fue el total del gasto"))
+//     let quienPago = prompt(`Quien pago la totalidad \n ${funciones.mostrarParticipantes(general)} `);
+//     quienPago=quienPago.toUpperCase();
+//     let quienesDividen= [];
+//     do{
+//         let personaDividir= prompt(`Vaya Ingresando los nombres entre quienes que se divide la cuenta \n ${funciones.mostrarParticipantes(general)}`);
+//         personaDividir= personaDividir.toUpperCase();
+//         quienesDividen.push(personaDividir);
+//         opcion= prompt("Quiere ingresar otro nombre? \nIngrese S o N");
+//         opcion= opcion.toUpperCase();
+//     }while(opcion =="S")
 
-const calcularTotal= ()=>{
-    let total= 0;
-    carrito.forEach((e)=>(total += e.precio));
-    console.log("El total es: $" + total);
-}
-
-do {
-
-    let nombreProducto = prompt("Escriba el nombre del producto");
-    let precioProducto= parseFloat(prompt("Ingrese el precio del producto"));
-    let stockProducto = parseInt(prompt("Que cantidad tenes para vender?"));
-    let descripcionProducto= prompt("Agrega una breve descripcion del porducto");
-    arrayProductos.push (new Producto(productId, nombreProducto,precioProducto,stockProducto,descripcionProducto));
-    productId ++;
-    opcion= prompt("Desea Ingresar otro Producto \n Escriba SI para agregarlo")
-}while(opcion== "SI" || opcion == "si" || opcion =="S");
-
-ordenxPrecio = arrayProductos.map (x => x );
-ordenxPrecio.sort(function (a, b){
-    return a.precio -b.precio
-})
-console.log(ordenxPrecio)
+//     let gasto = new Gasto (idGasto, tipo, total, quienPago, quienesDividen);
+//     general.gastos.push(gasto)
+//     general.personas = funciones.asignarGasto(general.personas, quienPago, total, quienesDividen);
+//     general.personas =funciones.dividirCuenta(general.personas, total, quienesDividen);
+//     idGasto= idGasto++;
+//     opcion = prompt("Desea Ingresar Otro gasto /n Ingrese S o N");
+//     opcion= opcion.toUpperCase();
+// }while(opcion == "S");
 
 
 
-alert("Bueno ahora vamos a realizar compras sobre los productos que acabas de ingresar xD");
-do{
-    let opcionCarrito = mostrarProductos();
-    let cantidadDeseada =parseInt(prompt("Que cantidad Deseas?"));
-    agregarCarrito (opcionCarrito , cantidadDeseada);
-    calcularTotal();
-    opcion= prompt("Desea Ingresar otro Producto \n Escriba SI para agregarlo");
-}while (opcion== "SI" || opcion == "si" || opcion =="S");
+
+localStorage.clear();
+funciones.mostrar(general);
+funciones.almacenarParticipantes("Participantes", general.personas)
+
+

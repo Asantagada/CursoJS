@@ -1,9 +1,9 @@
-let tipoDeGasto;
-let idGasto;
-let tipo;
-let total;
-let quienPago;
-let quienesDividen;
+// let tipoDeGasto;
+// let idGasto;
+// let tipo;
+// let total;
+// let quienPago;
+// let quienesDividen;
 
 
 

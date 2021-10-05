@@ -6,31 +6,23 @@ import {Funciones} from "./Class/Funciones.js"
 
 let general = new General();
 let funciones = new Funciones();
-let idPart = 1;
-let idGasto = 1;
 let opcion;
-let saldo= 0;
 
 alert("Bienvenido a la calculadora Online");
-// Primero le pedimos al usuario que registre a todos los participantes de 
-// la agenda de gastos y utilizamos la clase participante para generarlos con id, nombre y saldo.
-// Siempre y cuando no halla personas ya registradas, en ese caso se registran nuevos gastos a dividir.
+// Siempre y cuando no haya participantes en el local Storage,
+// Se le permitira al Usuario ingresar nombres de las personas que formaran parte de la agenda,
+// Luego confirmamos con el usuario que los datos esten Bien para continuar,
+// caso contrario se repite el proceso.
 // localStorage.clear()
-if(localStorage.length !=0) {
-    funciones.obtenerAlmacenados("Participantes", general.personas);
-    alert(funciones.mostrarParticipantes(general))
+// general.personas= funciones.obtenerAlmacenados("Participantes")
+if(general.personas.length !=0) {
+    funciones.mostrarParticipantes(general.personas)
     }else{ 
-    do{
-        let nombre= prompt("Ingresa el nombre de un participante de los gastos");
-        nombre= nombre.toUpperCase();
-        let participante = new Participante(idPart, nombre, saldo);
-        idPart = idPart ++;
-        general.personas.push(participante);
-        opcion = prompt("Desea Ingresar Otro participante \nIngrese S o N");
-        opcion= opcion.toUpperCase();
-    } while(opcion == "S");
-}
-funciones.crearLista(general.personas)
+        const btnAgenda=document.getElementById("btnAgenda");
+        btnAgenda.addEventListener("click", ()=>{funciones.respuestaClickAgenda(Participante, general)});
+        const btnLista=document.getElementById("btnLista");
+        btnLista.addEventListener("click",()=> funciones.crearLista(general.personas));
+    }
 
 
 // // Una vez cargados los datos de quienes participan en la agenda cargamos los datos de los gastos.
@@ -60,8 +52,9 @@ funciones.crearLista(general.personas)
 
 
 
-localStorage.clear();
-funciones.mostrar(general);
-funciones.almacenarParticipantes("Participantes", general.personas)
+// localStorage.clear();
+// funciones.mostrar(general);
+// funciones.almacenarParticipantes("Participantes", general.personas)
+
 
 

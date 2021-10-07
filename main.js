@@ -11,8 +11,8 @@ let opcion;
 alert("Bienvenido a la calculadora Online");
 // Siempre y cuando no haya participantes en el local Storage,
 // Se le permitira al Usuario ingresar nombres de las personas que formaran parte de la agenda,
-// Luego confirmamos con el usuario que los datos esten Bien para continuar,
-// caso contrario se repite el proceso.
+// Dando la opcion de repetir el proceso,
+// Si se confirma se arma una lista de los participantes y un boton para agregar gastos
 // localStorage.clear()
 // general.personas= funciones.obtenerAlmacenados("Participantes")
 if(general.personas.length !=0) {
@@ -22,8 +22,9 @@ if(general.personas.length !=0) {
         btnAgenda.addEventListener("click", ()=>{funciones.respuestaClickAgenda(Participante, general)});
         const btnLista=document.getElementById("btnLista");
         btnLista.addEventListener("click",()=> funciones.crearLista(general.personas));
-    }
+    }   
 
+// Esto ya esta de mas pero no lo quiero borrar por que en esto me voy a apoyar para hacer la logica con los botones
 
 // // Una vez cargados los datos de quienes participan en la agenda cargamos los datos de los gastos.
 // do{
@@ -51,10 +52,6 @@ if(general.personas.length !=0) {
 
 
 
-
-// localStorage.clear();
-// funciones.mostrar(general);
-// funciones.almacenarParticipantes("Participantes", general.personas)
 
 
 

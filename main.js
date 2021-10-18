@@ -12,8 +12,8 @@ let opcion;
 // Se le permitira al Usuario ingresar nombres de las personas que formaran parte de la agenda,
 // Dando la opcion de repetir el proceso,
 // Si se confirma se arma una lista de los participantes y un boton para agregar gastos
-// localStorage.clear()
 general.personas= funciones.obtenerAlmacenados("Participantes")
+
 if(general.personas.length !=0) {
     funciones.mostrarParticipantes(general.personas)
     }else{ 

@@ -42,10 +42,25 @@ export class Funciones{
             }     
         }return elementos;
     }
+    animarBoton(id){
+        $(`${id}`).animate({
+                            "font-size":"30px",
+                            "border-width":"10px",
+                            "margin":"20px",
+                            "height":"60px"
+                        },"fast")
+                .delay(2000)
+                .animate({
+                    "border-width":"2px",
+                    "margin":"0px",
+                    "height":"21px",
+                    "font-size":"13px"
+                })
+    }
 
     // Mediante esta funcion mostramos los participantes con su saldo hasta el momento
     mostrarParticipantes(array){
-        $("#contenedor1").slideUp();
+        $("#contenedor1").fadeOut(1000);
         $("#contenedor2").empty()
         let contenido="Recuerde que los Participantes de esta agenda son: ";
         $("#contenedor2").append(`<h2>${contenido}</h2>`)
@@ -55,7 +70,8 @@ export class Funciones{
         });
         let botonGasto= "Haga click para agregar un nuevo gasto";
         $("#contenedor3").append(`<br><button id= "btnGasto">${botonGasto}</button>`);
-        $("#btnGasto").click(()=>{this.determinarGasto(array)})
+        $("#btnGasto").click(()=>{this.determinarGasto(array)});
+        $("#btnGasto").hover(()=>{this.animarBoton("#btnGasto")})
     }
     // Funcion para vaciar un array
     eliminarLista(array){
@@ -116,7 +132,7 @@ export class Funciones{
                 <br>
                 <label>Quien pago la totalidad del gasto: </label>
                 <br>
-                <select>${this.crearOpciones(personas)}</select>
+                <select id="opcionesSelect">${this.crearOpciones(personas)}</select>
                 <br>            
                 <label id ="checkbox2">Entre quienes se divide el gasto:    </label>
                 <br>
@@ -131,9 +147,10 @@ export class Funciones{
     crearGasto(){
         let tipo= $("#tipoGasto").val();
         let iTotal =$("#totalGasto");
-        let total= parseFloat(iTotal.val())
-        // Como hago para obtener valor de checkbox y select?
-        console.log(tipo, total)
+        let total= parseFloat(iTotal.val());
+        let quienPago= $("#quienPago").val();
+        // Como hago para obtener valor de checkbox y
+        console.log(tipo, total, quienPago)
     }
 
 }

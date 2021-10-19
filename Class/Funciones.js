@@ -1,9 +1,31 @@
-import {Gasto} from "./Gastos.js"
-import {General} from "./General.js"
-let general = new General();
 
 // Tenemos las plantillas de las distintas funciones que vamos a utilizas
 export class Funciones{
+
+    // Esta funcion asigna el gasto y actualiza el saldo de quien pago la totalidad del gasto
+    asignarGasto(personas, nombre, total, quienesDividen){
+    personas.forEach(element => {
+        if(element.nombre == nombre){
+            element.saldo -= total/(quienesDividen.length+1);
+        };
+    });
+    return personas;
+    }
+
+    // Esta funcion asigna el gasto y actualiza el saldo de las demas personas que componen el gasto
+    dividirCuenta( personas, total, quienesDividen){
+    let gastoPerCapita= parseFloat(total/(quienesDividen.length + 1));
+    quienesDividen.forEach(element=> {
+        personas.forEach(e=> {
+            if (element == e.nombre){
+                console.log(e.saldo)
+                e.saldo += gastoPerCapita;
+            }
+        })
+    })
+    return personas;
+    }
+
     // Funcion para guardar en el storage
     almacenarParticipantes(clave, valor){
         const aAlmacenar= JSON.stringify(valor)
@@ -52,9 +74,9 @@ export class Funciones{
         $("#btnGasto").hover(()=>{this.animarBoton("#btnGasto")})
     }
     // Funcion para vaciar un array
-    eliminarLista(array, contenedor){
+    eliminarLista(array){
         let arrayVacio= array.splice(0, array.length);
-        $(`${contenedor}`).empty()
+        $("#contenedor2").empty()
         return array = arrayVacio;
     }
     // Funcion para crear la lista de los participantes de la agenda de gastos con los botones para confirmar y retroceso
@@ -71,7 +93,7 @@ export class Funciones{
             <button id="btnConfirmar">Confirmar</button>`
         );
         $("#btnConfirmar").click(()=>{this.mostrarParticipantes(array), this.almacenarParticipantes("Participantes", array)})
-        $("#btnEliminar").click(()=>{this.eliminarLista(array, "#contenedor2" )})
+        $("#btnEliminar").click(()=>{this.eliminarLista(array)})
 
     }
     // Funcion para el boton de agregar participante
@@ -86,25 +108,20 @@ export class Funciones{
         general.personas.push(participante);
         $("#inputAgenda").val(" ")
     }
-    // Funcion para crear checkbox con un array
     crearCheckbox(array){    
         let contenido=" "    
         array.forEach(persona=>{
-            contenido +=`<label for="checkbox${persona.nombre}"></label>${persona.nombre}
-                        <input type="checkbox" 
-                        class ="quienesDividen" value ="${persona.nombre}">`;
+            contenido +=`<label for="checkbox"><input type="checkbox">${persona.nombre}</label>`;
         })
         return contenido
     }
-    // Funcion para crear opciones y que solo pueda elegir 1
     crearOpciones(array){
         let contenido =" ";
         array.forEach(persona=>{
-            contenido += `<option value="${persona.nombre}">${persona.nombre}</option>`
+            contenido += `<option>${persona.nombre}</option>`
         })
         return contenido
     }
-    // Funcion para crear el formulario
     determinarGasto(personas){
         $("#contenedor4").empty();
         $("#contenedor4").append(`
@@ -115,7 +132,7 @@ export class Funciones{
                 <br>
                 <label>Quien pago la totalidad del gasto: </label>
                 <br>
-                <select id="quienPago">${this.crearOpciones(personas)}</select>
+                <select id="opcionesSelect">${this.crearOpciones(personas)}</select>
                 <br>            
                 <label id ="checkbox2">Entre quienes se divide el gasto:    </label>
                 <br>
@@ -126,51 +143,14 @@ export class Funciones{
             </form>`);
             $("#btnConfirmarGasto").click(()=>{this.crearGasto()})
     }
-      // Esta funcion asigna el gasto y actualiza el saldo de quien pago la totalidad del gasto
-    asignarGasto(personas, nombre, total, quienesDividen){
-        personas.forEach(element => {
-            if(element.nombre == nombre){
-                element.saldo -= total/(quienesDividen.length);
-            };
-        });
-        return personas;
-    }
-    
-        // Esta funcion asigna el gasto y actualiza el saldo de las demas personas que componen el gasto
-    dividirCuenta( personas, total, quienesDividen){
-        let gastoPerCapita= parseFloat(total/(quienesDividen.length));
-        quienesDividen.forEach(element=> {
-            personas.forEach(e=> {
-                if (element == e.nombre){
-                    console.log(e.saldo)
-                    e.saldo += gastoPerCapita;
-                }
-            })
-        })
-        return personas;
-    }
-    
-// Funcion para obtener los datos del formulario
+
     crearGasto(){
-        let idGasto= 1;
-        const tipoGasto= $("#tipoGasto").val();
-        const iTotal =$("#totalGasto");
-        let totalGasto= parseFloat(iTotal.val());
-        const quienPago= $("#quienPago").val();
-        let quienesDividen= [];
-        const valorCheckbox = $("input[type=checkbox]:checked").map(function () {
-                                return quienesDividen.push($(this).val())
-                                })
-        $("#contenedor4").empty();
-        $("#contenedor4").append(`
-            <li>Tipo de Gasto: ${tipoGasto}</li>
-            <li>El total del gasto es de : $${totalGasto}</li>
-            <li>Quien pago la totalidad del gasto es: ${quienPago}</li>
-            <li>Se divide entre: ${quienesDividen}</li>
-            <br>
-            <button id="btnConfirmarGasto">Confirmar Gasto</button>
-            <button id ="btnCancelarGasto">Repetir Proceso</button>`);
-        $("#btnCancelarGasto").click(()=>{this.eliminarLista(quienesDividen, "#contenedor4")})
+        let tipo= $("#tipoGasto").val();
+        let iTotal =$("#totalGasto");
+        let total= parseFloat(iTotal.val());
+        let quienPago= $("#quienPago").val();
+        // Como hago para obtener valor de checkbox y
+        console.log(tipo, total, quienPago)
     }
 
 }

@@ -1,6 +1,6 @@
 import {Gasto} from "./Gastos.js"
 import {General} from "./General.js"
-let general = new General();
+let general = new General()
 
 
 // Tenemos las plantillas de las distintas funciones que vamos a utilizas
@@ -42,6 +42,7 @@ export class Funciones{
             $("#contenedor2").append(`<li>${valor}</li>`)
         });
         let botonGasto= "Haga click para agregar un nuevo gasto";
+        $("#contenedor3").empty()
         $("#contenedor3").append(`<br><button id= "btnGasto">${botonGasto}</button>`);
         $("#btnGasto").click(()=>{this.determinarGasto(array)});
         $("#btnGasto").hover(()=>{this.animarBoton("#btnGasto")})
@@ -97,7 +98,7 @@ export class Funciones{
         })
         return contenido
     }
-    determinarGasto(personas){
+    determinarGasto(array){
         $("#contenedor4").empty();
         $("#contenedor4").append(`
             <form id ="formularioGasto">
@@ -107,22 +108,22 @@ export class Funciones{
                 <br>
                 <label>Quien pago la totalidad del gasto: </label>
                 <br>
-                <select id="quienPago">${this.crearOpciones(personas)}</select>
+                <select id="quienPago">${this.crearOpciones(array)}</select>
                 <br>            
                 <label id ="checkbox2">Entre quienes se divide el gasto:    </label>
                 <br>
-                ${this.crearCheckbox(personas)}
+                ${this.crearCheckbox(array)}
                 <br>
                 <input type="button" value="Listo" id="btnConfirmarGasto">
                 <br>
             </form>`);
-            $("#btnConfirmarGasto").click(()=>{this.crearGasto()})
+            $("#btnConfirmarGasto").click(()=>{this.crearGasto(array)})
     }
     // Esta funcion asigna el gasto y actualiza el saldo de quien pago la totalidad del gasto
     asignarGasto(personas, nombre, total, quienesDividen){
         personas.forEach(element => {
             if(element.nombre == nombre){
-                element.saldo -= total/(quienesDividen.length+1);
+                element.saldo += total;
             };
         });
         return personas;
@@ -130,24 +131,42 @@ export class Funciones{
     
      // Esta funcion asigna el gasto y actualiza el saldo de las demas personas que componen el gasto
     dividirCuenta( personas, total, quienesDividen){
-        let gastoPerCapita= parseFloat(total/(quienesDividen.length + 1));
+        let gastoPerCapita= parseFloat(total/(quienesDividen.length));
         quienesDividen.forEach(element=> {
             personas.forEach(e=> {
                 if (element == e.nombre){
                     console.log(e.saldo)
-                    e.saldo += gastoPerCapita;
+                    e.saldo -= gastoPerCapita;
                 }
             })
         })
         return personas;
     }
     
-        // Funcion para guardar en el storage
-        almacenarParticipantes(clave, valor){
-            const aAlmacenar= JSON.stringify(valor)
-            localStorage.setItem(clave, aAlmacenar)
-        }
-    crearGasto(){
+    // Funcion para guardar en el storage
+    almacenarParticipantes(clave, valor){
+        const aAlmacenar= JSON.stringify(valor)
+        localStorage.setItem(clave, aAlmacenar)
+    }
+    confirmarGasto(idGasto,tipoGasto, totalGasto, quienPago, quienesDividen, array){
+        $("#contenedor4").empty()
+        let gasto= new Gasto(idGasto,tipoGasto, totalGasto, quienPago, quienesDividen);
+        general.gastos.push(gasto);
+        this.asignarGasto(array, quienPago, totalGasto, quienesDividen);
+        this.dividirCuenta( array, totalGasto, quienesDividen);
+        this.mostrarParticipantes(array);
+        $("#contenedor5").prepend(`
+            <div>
+                <li>Id del gasto: ${idGasto}</li>
+                <li>Tipo de gasto:${tipoGasto}</li>
+                <li>Total del gasto: ${totalGasto}</li>
+                <li>Quien pago: ${quienPago}</li>
+                <li>Quienes Dividen: ${quienesDividen}</li>
+                </div>`)
+        console.log(array)
+        idGasto= idGasto++;
+    }
+    crearGasto(array){
         let idGasto= 1;
         const tipoGasto= $("#tipoGasto").val();
         const iTotal =$("#totalGasto");
@@ -166,7 +185,8 @@ export class Funciones{
             <br>
             <button id="btnConfirmarGasto">Confirmar Gasto</button>
             <button id ="btnCancelarGasto">Repetir Proceso</button>`);
-        $("#btnCancelarGasto").click(()=>{this.eliminarLista(quienesDividen, "#contenedor4")})
+        $("#btnCancelarGasto").click(()=>{this.eliminarLista(quienesDividen, "#contenedor4")});
+        $("#btnConfirmarGasto").click(()=>{this.confirmarGasto(idGasto,tipoGasto, totalGasto, quienPago, quienesDividen, array )})
     }
 
 }

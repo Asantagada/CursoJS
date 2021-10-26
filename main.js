@@ -3,19 +3,24 @@ import {Participante} from "./Class/Participantes.js"
 import {Gasto} from "./Class/Gastos.js"
 import {Funciones} from "./Class/Funciones.js"
 
-
+// Falta pasar todo al html limpio e ir agregando estilos mediante display none, una vez hecho eso 
+// vamos a utilizar las mismas funciones pero con los elementos ya renderizados
 let general = new General();
 let funciones = new Funciones();
 let opcion;
 
 general.personas= funciones.obtenerAlmacenados("Participantes")
-
-if(general.personas.length !=0) {
-    funciones.mostrarParticipantes(general.personas)
-    }else{ 
-        $("#btnAgenda").click(()=>{funciones.agregarParticipante(Participante, general)})
-        $("#btnLista").click(()=>{funciones.crearLista(general.personas)});
-    }
+general.gastos = funciones.obtenerAlmacenados("Gastos");
+if(general.personas.length !=0  ) {
+    funciones.mostrarParticipantes(general.personas);
+}else{ 
+    $("#btnAgenda").click(()=>{funciones.agregarParticipante(Participante, general)})
+    $("#btnLista").click(()=>{funciones.crearLista(general.personas)});
+}
+if(general.gastos.length!=0 ){
+    console.log()
+    funciones.cargarContenedor(general.gastos)
+}
 // const URLDolar= "https://www.dolarsi.com/api/api.php?type=valoresprincipales";
 // $("#Desafio").prepend(`
 //             <input type="number" placeholder="Ingrese el saldo en pesos" id="inputDolar">

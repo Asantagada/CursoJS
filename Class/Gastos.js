@@ -9,10 +9,10 @@
 
 
 export class Gasto {
-    constructor (idGasto,tipo, total, quienPago, quienesDividen){
+    constructor (idGasto,tipoGasto, totalGasto, quienPago, quienesDividen){
         this.idGasto=idGasto;
-        this.tipo=tipo;
-        this.total=parseFloat(total);
+        this.tipoGasto=tipoGasto;
+        this.totalGasto=parseFloat(totalGasto);
         this.quienPago=quienPago;
         this.quienesDividen=quienesDividen;
     }

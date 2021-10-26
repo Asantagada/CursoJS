@@ -15,21 +15,21 @@ export class Funciones{
             }     
         }return elementos;
     }
-    animarBoton(id){
-        $(`${id}`).animate({
-                            "font-size":"30px",
-                            "border-width":"10px",
-                            "margin":"20px",
-                            "height":"60px"
-                        },"fast")
-                .delay(2000)
-                .animate({
-                    "border-width":"2px",
-                    "margin":"0px",
-                    "height":"21px",
-                    "font-size":"13px"
-                })
-    }
+    // animarBoton(id){
+    //     $(`${id}`).animate({
+    //                         "font-size":"30px",
+    //                         "border-width":"10px",
+    //                         "margin":"20px",
+    //                         "height":"60px"
+    //                     },"fast")
+    //             .delay(2000)
+    //             .animate({
+    //                 "border-width":"2px",
+    //                 "margin":"0px",
+    //                 "height":"21px",
+    //                 "font-size":"13px"
+    //             })
+    // }
 
     // Mediante esta funcion mostramos los participantes con su saldo hasta el momento
     mostrarParticipantes(array){
@@ -45,7 +45,7 @@ export class Funciones{
         $("#contenedor3").empty()
         $("#contenedor3").append(`<br><button id= "btnGasto">${botonGasto}</button>`);
         $("#btnGasto").click(()=>{this.determinarGasto(array)});
-        $("#btnGasto").hover(()=>{this.animarBoton("#btnGasto")})
+        // $("#btnGasto").hover(()=>{this.animarBoton("#btnGasto")})
     }
     // Funcion para vaciar un array
     eliminarLista(array,contenedor){
@@ -66,7 +66,7 @@ export class Funciones{
             <button id="btnEliminar">Repetir Proceso</button>
             <button id="btnConfirmar">Confirmar</button>`
         );
-        $("#btnConfirmar").click(()=>{this.mostrarParticipantes(array), this.almacenarParticipantes("Participantes", array)})
+        $("#btnConfirmar").click(()=>{this.mostrarParticipantes(array), this.almacenarElementos("Participantes", array)})
         $("#btnEliminar").click(()=>{this.eliminarLista(array, "#contenedor2")})
 
     }
@@ -144,7 +144,7 @@ export class Funciones{
     }
     
     // Funcion para guardar en el storage
-    almacenarParticipantes(clave, valor){
+    almacenarElementos(clave, valor){
         const aAlmacenar= JSON.stringify(valor)
         localStorage.setItem(clave, aAlmacenar)
     }
@@ -157,14 +157,15 @@ export class Funciones{
         this.mostrarParticipantes(array);
         $("#contenedor5").prepend(`
             <div>
-                <li>Id del gasto: ${idGasto}</li>
-                <li>Tipo de gasto:${tipoGasto}</li>
-                <li>Total del gasto: ${totalGasto}</li>
-                <li>Quien pago: ${quienPago}</li>
-                <li>Quienes Dividen: ${quienesDividen}</li>
-                </div>`)
-        console.log(array)
-        idGasto= idGasto++;
+                <li>Id del gasto: ${gasto.idGasto}</li>
+                <li>Tipo de gasto:${gasto.tipoGasto}</li>
+                <li>Total del gasto: ${gasto.totalGasto}</li>
+                <li>Quien pago: ${gasto.quienPago}</li>
+                <li>Quienes Dividen: ${gasto.quienesDividen}</li>
+                </div><br>`)
+        localStorage.clear();
+        this.almacenarElementos("Participantes", array);
+        this.almacenarElementos("Gastos", general.gastos)
     }
     crearGasto(array){
         let idGasto= 1;
@@ -187,7 +188,19 @@ export class Funciones{
             <button id ="btnCancelarGasto">Repetir Proceso</button>`);
         $("#btnCancelarGasto").click(()=>{this.eliminarLista(quienesDividen, "#contenedor4")});
         $("#btnConfirmarGasto").click(()=>{this.confirmarGasto(idGasto,tipoGasto, totalGasto, quienPago, quienesDividen, array )})
+        idGasto= idGasto++;                        
     }
-
+    cargarContenedor(array){
+        array.forEach(gasto=>{
+            $("#contenedor5").prepend(`
+            <div>
+                <li>Id del gasto: ${gasto.idGasto}</li>
+                <li>Tipo de gasto:${gasto.tipoGasto}</li>
+                <li>Total del gasto: ${gasto.totalGasto}</li>
+                <li>Quien pago: ${gasto.quienPago}</li>
+                <li>Quienes Dividen: ${gasto.quienesDividen}</li>
+                </div><br>`)
+        })
+    }
 }
 

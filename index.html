@@ -4,27 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./Css/estilos.css">
     <title>Prueba</title>
 </head>
 <body>
-    <h1 id="titulo" >Bienvenido a la agenda de gastos online</h1>
+    <h1 id="tituloPrincipal" >Bienvenido a la agenda de gastos online</h1>
     <div id="contenedor1" name ="contenedor1">
-        <h2>Ingrese los nombres de las personas que participaran de la agenda</h2>
+        <h2 id="tituloFormParticipantes">Ingrese los nombres de las personas que participaran de la agenda</h2>
         <form id="formParticipantes">
             <input type="text" placeholder="Nombre" id="inputAgenda">
             <button id ="btnAgenda" type ="button">Agregar</button>
-            <br>
-            <button id ="btnLista" type= "button">Continuar</button>
+            <button id="btnLista" type= "button">Continuar</button>
         </form>
     </div>
     <br>
-    <div id="contenedor2"></div>
-    <div id="contenedor3"></div>
-    <div id="contenedor4"></div>
-    <div id="contenedor5"></div>
-    <!-- <div id= "Desafio"></div>
-    <div id= "placeHolder"></div>
-    <div id= "Harry"></div> -->
+    <div id="contenedor2">
+        <h2 class= "tituloParticipantes">Recuerde que los Participantes de esta agenda son: </h2>
+        <div id="contenedorParticipantes"></div>
+        <button id="btnEliminar">Repetir Proceso</button>
+        <button id="btnConfirmar">Confirmar</button>   
+    </div>
+    <div id="contenedor3">
+        <button id= "btnGasto">Haga click para agregar un nuevo gasto</button>
+    </div>
+    <div id="contenedor4" >
+        <form id ="formularioGasto" >
+            <input type="text" placeholder="De que fue el gasto: " id ="tipoGasto">
+            <br>
+            <input type="number" placeholder="Cual es el total del gasto: " id ="totalGasto">
+            <br>
+            <label>Quien pago la totalidad del gasto: </label>
+            <br>
+            <select id="quienPago"></select>
+            <br>            
+            <label id ="checkboxEntreQuienes">Entre quienes se divide el gasto:    <br></label>
+            <br>
+            <input type="button" value="Listo" id="btnMostrarGasto">
+            <br>
+        </form>
+        <div id="contenedorGastos"></div>
+        <button id="btnConfirmarGasto" >Confirmar Gasto</button>
+        <button id ="btnCancelarGasto" >Repetir Proceso</button>
+    </div>
+    <div id="gastosAnteriores"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
 <script type="module" src="main.js"></script>
 </body>

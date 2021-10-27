@@ -1,0 +1,84 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: 'Irish Grover', cursive;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(240, 165, 0), 0 0 0.2em rgb(240, 165, 0);
+}
+body{
+    background-color: rgb(8, 32, 50);
+}
+button:hover{
+    font-size: 160%;
+    border:2px solid;
+    border-color: rgb(240, 165, 0);
+}
+#tituloPrincipal{
+    height: 20vh ;
+    color: rgb(0, 0, 0);
+    background-color: rgb(8, 32, 50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#contenedor1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#tituloFormParticipantes{
+    width: 70%;
+}
+#contenedor2{
+    display: grid;
+    grid-area: auto;
+    justify-content: center;
+    border-width: 1px;
+    border-style: dotted;
+    border-color: rgb(240, 165, 0);
+    text-align: center;   
+}
+.tituloParticipantes{
+    width: 100%;
+}
+.listaParticipantes{
+    padding: 1%;
+}
+#contenedorParticipantes{
+    width: 50%;
+}
+#contenedor3{
+    padding: 0.5%;
+    display: grid;
+    grid-area: auto;
+    justify-content: center;
+    border-width: 1px;
+    border-style: dotted;
+    border-color: rgb(240, 165, 0);  
+}
+#btnGasto{
+    height: 100px;
+    width: 300px;
+    border-radius: 50%;
+}
+#btnGasto:hover{
+    height: 140px;
+    width: 360px;
+}
+#contenedor4{
+    text-align: center;
+    display: grid;
+    grid-area: auto;
+    justify-content: center;
+    border-width: 1px;
+    border-style: dotted;
+    border-color: rgb(240, 165, 0);
+    padding: 0.3%;
+}
+#contenedor5{
+    background-color: rgb(8, 32, 50);
+    padding: 0.3%;
+}
+.gastosAnteriores{
+    list-style: none;
+}
+

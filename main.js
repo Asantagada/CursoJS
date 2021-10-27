@@ -7,20 +7,39 @@ import {Funciones} from "./Class/Funciones.js"
 // vamos a utilizar las mismas funciones pero con los elementos ya renderizados
 let general = new General();
 let funciones = new Funciones();
-let opcion;
-
+$("#contenedor2").hide();
+$("#contenedor3").hide();
+$("#contenedor4").hide()
+// $("#contenedor2").show();
 general.personas= funciones.obtenerAlmacenados("Participantes")
 general.gastos = funciones.obtenerAlmacenados("Gastos");
+console.log(general.gastos)
+
 if(general.personas.length !=0  ) {
     funciones.mostrarParticipantes(general.personas);
-}else{ 
-    $("#btnAgenda").click(()=>{funciones.agregarParticipante(Participante, general)})
-    $("#btnLista").click(()=>{funciones.crearLista(general.personas)});
+    if(general.gastos.length!=0){
+        $("#btnGasto").show();
+        funciones.cargarContenedor(general.gastos, "#gastosAnteriores")
+    }
 }
-if(general.gastos.length!=0 ){
-    console.log()
-    funciones.cargarContenedor(general.gastos)
-}
+$("#btnAgenda").click(()=>{funciones.agregarParticipante(Participante, general)})
+$("#btnLista").click(()=>{funciones.crearLista(general.personas)})
+// Una vez que se hayan cargado participantes se muestran estos botones
+// Para confirmar o repetir el proceso
+$("#btnEliminar").click(()=>{funciones.eliminarLista(general.personas, "#contenedorParticipantes")})
+$("#btnConfirmar").click(()=>{funciones.mostrarParticipantes(general.personas), 
+                            funciones.almacenarElementos("Participantes", general.personas)})
+
+// Una vez cargados los participantes y almacenados, se muestra el boton para agregar gastos
+$("#btnGasto").click(()=>{funciones.determinarGasto(general.personas)});
+// Al hacer click abre un formulario con un boton que obtiene los valores y muestra los resultados
+$("#btnMostrarGasto").click(()=>{funciones.mostrarGasto(Gasto, general)});
+// Una vez mostrado el gasto se muestran los 2 botones para repetir el proceso o confirmar
+$("#btnCancelarGasto").click(()=>{funciones.eliminarLista(general.gastos[0].quienesDividen, "#contenedorGastos")});
+$("#btnConfirmarGasto").click(()=>{funciones.confirmarGasto(general.gastos, general.personas)})
+// $("#btnCancelarGasto").click(()=>{console.log(general.gastos[0].idGasto)})
+
+
 // const URLDolar= "https://www.dolarsi.com/api/api.php?type=valoresprincipales";
 // $("#Desafio").prepend(`
 //             <input type="number" placeholder="Ingrese el saldo en pesos" id="inputDolar">

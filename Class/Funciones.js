@@ -1,11 +1,5 @@
-import {Gasto} from "./Gastos.js"
-import {General} from "./General.js"
-let general = new General()
-
-
-// Tenemos las plantillas de las distintas funciones que vamos a utilizas
 export class Funciones{
-    // Funcion para obtener los almacenados
+// Funcion para obtener los almacenados
     obtenerAlmacenados(clave){
         const almacenados = JSON.parse(localStorage.getItem(clave));
         const elementos =[];
@@ -15,62 +9,44 @@ export class Funciones{
             }     
         }return elementos;
     }
-    // animarBoton(id){
-    //     $(`${id}`).animate({
-    //                         "font-size":"30px",
-    //                         "border-width":"10px",
-    //                         "margin":"20px",
-    //                         "height":"60px"
-    //                     },"fast")
-    //             .delay(2000)
-    //             .animate({
-    //                 "border-width":"2px",
-    //                 "margin":"0px",
-    //                 "height":"21px",
-    //                 "font-size":"13px"
-    //             })
-    // }
-
-    // Mediante esta funcion mostramos los participantes con su saldo hasta el momento
+// Mediante esta funcion mostramos los participantes con su saldo hasta el momento
+// Y el boton que permite agregar gastos 
     mostrarParticipantes(array){
         $("#contenedor1").fadeOut(1000);
-        $("#contenedor2").empty()
-        let contenido="Recuerde que los Participantes de esta agenda son: ";
-        $("#contenedor2").append(`<h2>${contenido}</h2>`)
+        $("#contenedorParticipantes").empty()
         array.forEach(elemento => {
-            let valor= ".-" + elemento.nombre +"  Cuenta con un saldo de: "+ elemento.saldo;
-            $("#contenedor2").append(`<li>${valor}</li>`)
+            let valor= ".-" + elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
+            $("#contenedorParticipantes").append(`<li class = "listaParticipantes">${valor}</li>`)
         });
-        let botonGasto= "Haga click para agregar un nuevo gasto";
-        $("#contenedor3").empty()
-        $("#contenedor3").append(`<br><button id= "btnGasto">${botonGasto}</button>`);
-        $("#btnGasto").click(()=>{this.determinarGasto(array)});
-        // $("#btnGasto").hover(()=>{this.animarBoton("#btnGasto")})
+        $("#contenedor2").show()
+        $("#contenedor3").show()
+        $("#btnEliminar").hide();
+        $("#btnConfirmar").hide()
     }
-    // Funcion para vaciar un array
-    eliminarLista(array,contenedor){
-        let arrayVacio= array.splice(0, array.length);
-        $(`${contenedor}`).empty()
-        return array = arrayVacio;
+// Funcion para cargar los gastos anteriores
+    cargarContenedor(array, contenedor){
+        if(array.length<1){
+            array.forEach(gasto=>{
+                $(contenedor).prepend(`
+                    <li>Id del gasto: ${gasto.idGasto}</li>
+                    <li>Tipo de gasto:${gasto.tipoGasto}</li>
+                    <li>Total del gasto: ${gasto.totalGasto}</li>
+                    <li>Quien pago: ${gasto.quienPago}</li>
+                    <li>Quienes Dividen: ${gasto.quienesDividen}</li>
+                    `)
+            })
+        }else{
+            $(contenedor).prepend(`
+                    <li>Id del gasto: ${array[0].idGasto}</li>
+                    <li>Tipo de gasto:${array[0].tipoGasto}</li>
+                    <li>Total del gasto: ${array[0].totalGasto}</li>
+                    <li>Quien pago: ${array[0].quienPago}</li>
+                    <li>Quienes Dividen: ${array[0].quienesDividen}</li>
+                    `)
+        console.log(array[0])
+        }
     }
-    // Funcion para crear la lista de los participantes de la agenda de gastos con los botones para confirmar y retroceso
-    crearLista(array){
-        $("#contenedor2").empty();
-        let contenido="Las personas que forman parte de esta agenda son: ";
-        $("#contenedor2").append(`<h2>${contenido}</h2>`);
-        array.forEach(elemento => {
-            let valor= elemento.nombre +"   Cuenta con un saldo de: "+ elemento.saldo;
-            $("#contenedor2").append(`<li>${valor}</li>`)
-        });
-        $("#contenedor2").append(`
-            <button id="btnEliminar">Repetir Proceso</button>
-            <button id="btnConfirmar">Confirmar</button>`
-        );
-        $("#btnConfirmar").click(()=>{this.mostrarParticipantes(array), this.almacenarElementos("Participantes", array)})
-        $("#btnEliminar").click(()=>{this.eliminarLista(array, "#contenedor2")})
-
-    }
-    // Funcion para el boton de agregar participante
+// Funcion para el boton de agregar participante
     agregarParticipante(clase1, general){
         let nombre= " ";
         let saldo= 0;
@@ -82,6 +58,28 @@ export class Funciones{
         general.personas.push(participante);
         $("#inputAgenda").val(" ")
     }
+// Funcion para guardar en el storage
+    almacenarElementos(clave, valor){
+        const aAlmacenar= JSON.stringify(valor)
+        localStorage.setItem(clave, aAlmacenar)
+    }
+// Funcion para crear la lista de los participantes de la agenda de gastos con los 
+// botones para confirmar y retroceso
+    crearLista(array){
+        $("#contenedorParticipantes").empty();
+        array.forEach(elemento => {
+            let valor= ".-" + elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
+            $("#contenedorParticipantes").append(`<li class = "listaParticipantes">${valor}</li>`)
+        });
+        $("#contenedor2").show();
+    }   
+    // Funcion para vaciar un array
+    eliminarLista(array,contenedor){
+        let arrayVacio= array.splice(0, array.length);
+        $(`${contenedor}`).empty()
+        return array = arrayVacio;
+    }
+// Funcion para crear checkbox de participantes mediante un array
     crearCheckbox(array){    
         let contenido=" "    
         array.forEach(persona=>{
@@ -89,85 +87,27 @@ export class Funciones{
                         <input type="checkbox" 
                         class ="quienesDividen" value ="${persona.nombre}">`;
         })
-        return contenido
-    }   
+        $("#checkboxEntreQuienes").append(contenido)
+    }  
+// Funcion para crear opciones de participantes mediante un array 
     crearOpciones(array){
         let contenido =" ";
         array.forEach(persona=>{
             contenido += `<option value="${persona.nombre}">${persona.nombre}</option>`
         })
-        return contenido
+        $("#quienPago").append(contenido)
     }
+// Funcion para mostrar el formulario de gastos, creando opciones de checkbox y select mediante
+// los participantes ingresados
     determinarGasto(array){
-        $("#contenedor4").empty();
-        $("#contenedor4").append(`
-            <form id ="formularioGasto">
-                <input type="text" placeholder="De que fue el gasto: " id ="tipoGasto">
-                <br>
-                <input type="number" placeholder="Cual es el total del gasto: " id ="totalGasto">
-                <br>
-                <label>Quien pago la totalidad del gasto: </label>
-                <br>
-                <select id="quienPago">${this.crearOpciones(array)}</select>
-                <br>            
-                <label id ="checkbox2">Entre quienes se divide el gasto:    </label>
-                <br>
-                ${this.crearCheckbox(array)}
-                <br>
-                <input type="button" value="Listo" id="btnConfirmarGasto">
-                <br>
-            </form>`);
-            $("#btnConfirmarGasto").click(()=>{this.crearGasto(array)})
+        $("#quienPago").append(`${this.crearOpciones(array)}` );         
+        $("#checkboxEntreQuienes").append(`${this.crearCheckbox(array)}`);
+        $("#contenedor4").show();
+        $("#btnConfirmarGasto").hide();
+        $("#btnCancelarGasto").hide();
     }
-    // Esta funcion asigna el gasto y actualiza el saldo de quien pago la totalidad del gasto
-    asignarGasto(personas, nombre, total, quienesDividen){
-        personas.forEach(element => {
-            if(element.nombre == nombre){
-                element.saldo += total;
-            };
-        });
-        return personas;
-        }
-    
-     // Esta funcion asigna el gasto y actualiza el saldo de las demas personas que componen el gasto
-    dividirCuenta( personas, total, quienesDividen){
-        let gastoPerCapita= parseFloat(total/(quienesDividen.length));
-        quienesDividen.forEach(element=> {
-            personas.forEach(e=> {
-                if (element == e.nombre){
-                    console.log(e.saldo)
-                    e.saldo -= gastoPerCapita;
-                }
-            })
-        })
-        return personas;
-    }
-    
-    // Funcion para guardar en el storage
-    almacenarElementos(clave, valor){
-        const aAlmacenar= JSON.stringify(valor)
-        localStorage.setItem(clave, aAlmacenar)
-    }
-    confirmarGasto(idGasto,tipoGasto, totalGasto, quienPago, quienesDividen, array){
-        $("#contenedor4").empty()
-        let gasto= new Gasto(idGasto,tipoGasto, totalGasto, quienPago, quienesDividen);
-        general.gastos.push(gasto);
-        this.asignarGasto(array, quienPago, totalGasto, quienesDividen);
-        this.dividirCuenta( array, totalGasto, quienesDividen);
-        this.mostrarParticipantes(array);
-        $("#contenedor5").prepend(`
-            <div>
-                <li>Id del gasto: ${gasto.idGasto}</li>
-                <li>Tipo de gasto:${gasto.tipoGasto}</li>
-                <li>Total del gasto: ${gasto.totalGasto}</li>
-                <li>Quien pago: ${gasto.quienPago}</li>
-                <li>Quienes Dividen: ${gasto.quienesDividen}</li>
-                </div><br>`)
-        localStorage.clear();
-        this.almacenarElementos("Participantes", array);
-        this.almacenarElementos("Gastos", general.gastos)
-    }
-    crearGasto(array){
+
+    mostrarGasto(clase1,general){
         let idGasto= 1;
         const tipoGasto= $("#tipoGasto").val();
         const iTotal =$("#totalGasto");
@@ -177,30 +117,51 @@ export class Funciones{
         const valorCheckbox = $("input[type=checkbox]:checked").map(function () {
                                 return quienesDividen.push($(this).val())
                                 })
-        $("#contenedor4").empty();
-        $("#contenedor4").append(`
-            <li>Tipo de Gasto: ${tipoGasto}</li>
-            <li>El total del gasto es de : $${totalGasto}</li>
-            <li>Quien pago la totalidad del gasto es: ${quienPago}</li>
-            <li>Se divide entre: ${quienesDividen}</li>
-            <br>
-            <button id="btnConfirmarGasto">Confirmar Gasto</button>
-            <button id ="btnCancelarGasto">Repetir Proceso</button>`);
-        $("#btnCancelarGasto").click(()=>{this.eliminarLista(quienesDividen, "#contenedor4")});
-        $("#btnConfirmarGasto").click(()=>{this.confirmarGasto(idGasto,tipoGasto, totalGasto, quienPago, quienesDividen, array )})
+        $("#formularioGasto").hide();
+        $("#contenedorGastos").prepend(`
+                    <li>Id del gasto: ${idGasto}</li>
+                    <li>Tipo de gasto:${tipoGasto}</li>
+                    <li>Total del gasto: ${totalGasto}</li>
+                    <li>Quien pago: ${quienPago}</li>
+                    <li>Quienes Dividen: ${quienesDividen}</li>
+                    `)
+        $("#btnConfirmarGasto").show();
+        $("#btnCancelarGasto").show();
+        let gasto = new clase1 (idGasto, tipoGasto, totalGasto, quienPago, quienesDividen);
+        general.gastos.push(gasto)
         idGasto= idGasto++;                        
     }
-    cargarContenedor(array){
-        array.forEach(gasto=>{
-            $("#contenedor5").prepend(`
-            <div>
-                <li>Id del gasto: ${gasto.idGasto}</li>
-                <li>Tipo de gasto:${gasto.tipoGasto}</li>
-                <li>Total del gasto: ${gasto.totalGasto}</li>
-                <li>Quien pago: ${gasto.quienPago}</li>
-                <li>Quienes Dividen: ${gasto.quienesDividen}</li>
-                </div><br>`)
+    // Esta funcion asigna el gasto y actualiza el saldo de quien pago la totalidad del gasto
+    asignarGasto(gasto,personas){
+        personas.forEach(element => {
+            if(element.nombre == gasto.quienPago){
+                element.saldo += gasto.totalGasto;
+            };
+        });
+        return personas;
+        }
+    
+     // Esta funcion asigna el gasto y actualiza el saldo de las demas personas que componen el gasto
+    dividirCuenta( gasto, personas){
+        let gastoPerCapita= parseFloat(gasto.totalGasto/(gasto.quienesDividen.length));
+        gasto.quienesDividen.forEach(element=> {
+            personas.forEach(e=> {
+                if (element == e.nombre){
+                    e.saldo -= gastoPerCapita;
+                }
+            })
         })
+        return personas;
+    }
+    
+    confirmarGasto(gastos, personas){
+        $("#contenedor4").hide()
+        this.asignarGasto(gastos[0],personas);
+        this.dividirCuenta(gastos[0], personas);
+        this.mostrarParticipantes(personas);
+        this.cargarContenedor(gastos,"#gastosAnteriores");
+        localStorage.clear();
+        this.almacenarElementos("Participantes", personas);
+        this.almacenarElementos("Gastos", gastos)
     }
 }
-

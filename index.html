@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="./Css/estilos.css">
     <title>Prueba</title>
 </head>
@@ -22,9 +23,11 @@
     <div id="contenedor2">
         <h2 class= "tituloParticipantes">Recuerde que los Participantes de esta agenda son: </h2>
         <div id="contenedorParticipantes"></div>
-        <button id="btnEliminar">Repetir Proceso</button>
-        <button id="btnConfirmar">Confirmar</button>
-        <button id="btnMoneda">Cambiar a dolar</button>   
+        <div id="contenedorBotones">
+            <button id="btnEliminar">Repetir Proceso</button>
+            <button id="btnConfirmar">Confirmar</button>
+            <button id="btnMoneda">Cambiar a dolar</button> 
+        </div>  
     </div>
     <div id="contenedor3">
         <button id= "btnGasto">Haga click para agregar un nuevo gasto</button>
@@ -45,11 +48,13 @@
             <br>
         </form>
         <div id="contenedorGastos"></div>
-        <button id="btnConfirmarGasto" >Confirmar Gasto</button>
-        <button id ="btnCancelarGasto" >Repetir Proceso</button>
+        <div id="contenedorBotones">
+            <button id="btnConfirmarGasto">Confirmar Gasto</button>
+            <button id="btnCancelarGasto">Repetir Proceso</button> 
+        </div>
     </div>
     <div id="gastosAnteriores"></div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
-<script type="module" src="./main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>

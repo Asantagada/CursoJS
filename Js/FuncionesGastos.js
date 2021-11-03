@@ -34,9 +34,13 @@ export class FuncionesGastos{
 // Funcion para mostrar el formulario de gastos, creando opciones de checkbox y select mediante
 // los participantes ingresados
     determinarGasto(array){
+        $("#quienPago").empty();
+        $("#checkboxEntreQuienes").empty();
         $("#quienPago").append(`${funcionesGenerales.crearOpciones(array)}` );         
         $("#checkboxEntreQuienes").append(`${funcionesGenerales.crearCheckbox(array)}`);
         $("#contenedor4").show();
+        $("#contenedorGastos").hide();
+        $("#formularioGasto").show();
         $("#btnConfirmarGasto").hide();
         $("#btnCancelarGasto").hide();
     }
@@ -53,12 +57,12 @@ export class FuncionesGastos{
                                 })
         $("#formularioGasto").hide();
         $("#contenedorGastos").prepend(`
-                    <li>Id del gasto: ${idGasto}</li>
                     <li>Tipo de gasto:${tipoGasto}</li>
                     <li>Total del gasto: ${totalGasto}</li>
                     <li>Quien pago: ${quienPago}</li>
                     <li>Quienes Dividen: ${quienesDividen}</li>
                     `)
+        $("#contenedorGastos").show();
         $("#btnConfirmarGasto").show();
         $("#btnCancelarGasto").show();
         let gasto = new clase1 (idGasto, tipoGasto, totalGasto, quienPago, quienesDividen);

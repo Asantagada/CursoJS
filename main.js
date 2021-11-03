@@ -19,7 +19,7 @@ let funcionesGenerales= new FuncionesGenerales();
 // Inicia escondiendo determinados elementos del html para evitar que se carguen datos en orden incorrecto
 $("#contenedor2").hide();
 $("#contenedor3").hide();
-$("#contenedor4").hide()
+$("#contenedor4").hide();
 // Primero revisa el local storage para chequear si ya hay partipantes y gastos anteriores
 general.personas= funcionesAlmacenados.obtenerAlmacenados("Participantes")
 general.gastos = funcionesAlmacenados.obtenerAlmacenados("Gastos");
@@ -31,14 +31,15 @@ if(general.personas.length !=0  ) {
         $("#btnGasto").show();
         funcionesGastos.cargarContenedor(general.gastos, "#gastosAnteriores")
     }
-}
+};
 // Luego se habilitan los botones para crear agregar participantes
 $("#btnAgenda").click(()=>{funcionesParticipantes.agregarParticipante(Participante, general)})
 $("#btnLista").click(()=>{funcionesParticipantes.crearLista(general.personas)})
 $("#btnMoneda").click(()=>{funcionesApis.cambiarMoneda(URLDolar, general.personas)})
 // Una vez que se hayan cargado participantes se muestran estos botones
 // Para confirmar o repetir el proceso
-$("#btnEliminar").click(()=>{funcionesGenerales.eliminarLista(general.personas, "#contenedorParticipantes")})
+$("#btnEliminar").click(()=>{funcionesGenerales.eliminarLista(general.personas, "#contenedorParticipantes"),
+                            $("#contenedor2").hide()})
 $("#btnConfirmar").click(()=>{funcionesParticipantes.mostrarParticipantes(general.personas), 
                 funcionesAlmacenados.almacenarElementos("Participantes", general.personas)})
 // Una vez cargados los participantes y almacenados, se muestra el boton para agregar gastos
@@ -46,7 +47,9 @@ $("#btnGasto").click(()=>{funcionesGastos.determinarGasto(general.personas)});
 // Al hacer click abre un formulario con un boton que obtiene los valores y muestra los resultados
 $("#btnMostrarGasto").click(()=>{funcionesGastos.mostrarGasto(Gasto, general)});
 // Una vez mostrado el gasto se muestran los 2 botones para repetir el proceso o confirmar
-$("#btnCancelarGasto").click(()=>{funcionesGenerales.eliminarLista(general.gastos[0].quienesDividen, "#contenedorGastos")});
+$("#btnCancelarGasto").click(()=>{funcionesGenerales.eliminarLista(general.gastos[0].quienesDividen,"#contenedorGastos"),
+                            $("#btnConfirmarGasto").hide(),
+                            $("#btnCancelarGasto").hide()});
 $("#btnConfirmarGasto").click(()=>{funcionesGastos.confirmarGasto(general.gastos, general.personas)})
 
 

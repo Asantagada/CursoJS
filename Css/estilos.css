@@ -2,16 +2,19 @@
     margin:0;
     padding: 0;
     font-family: 'Irish Grover', cursive;
-    text-shadow: 1px 1px 2px black, 0 0 1em rgb(240, 165, 0), 0 0 0.2em rgb(240, 165, 0);
 }
 body{
     background-color: rgb(8, 32, 50);
 }
-button:hover{
-    font-size: 160%;
+/* button{
     border:2px solid;
-    border-color: rgb(240, 165, 0);
-}
+    border-color: black(240, 164, 0, 0.658);
+    border-radius: 50%;
+    height: 5rem;
+    width:5rem;
+} */
+/* ------------------------------- */
+/* Titulo de Inicio */
 #tituloPrincipal{
     height: 20vh ;
     color: rgb(0, 0, 0);
@@ -19,51 +22,134 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(240, 165, 0), 0 0 0.2em rgb(240, 165, 0);
+    animation: flash;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
 }
+/* Contenedor para cargar Participantes */
 #contenedor1{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 5% 5%;
+    height: 20vh;
 }
 #tituloFormParticipantes{
     width: 70%;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(240, 165, 0), 0 0 0.2em rgb(240, 165, 0);
+    font-size: 1.5rem;
 }
+#formParticipantes input{
+    transition:all 1.5s;
+    width: 8rem;
+    height: 2.7rem;
+    border-radius: 10%;
+}
+#formParticipantes input:focus{
+    width: 10rem;
+    height: 3rem;
+    border-color:rgb(240, 165, 0);
+}
+#formParticipantes button{
+    border:2px solid;
+    border-color: black(240, 164, 0, 0.658);
+    border-radius: 50%;
+    height: 4rem;
+    width:4rem;
+    transition: all 1s;
+}
+#formParticipantes button:hover{
+    border-color: rgb(240, 165, 0);
+    height: 5rem;
+    width:5rem;
+    font-size: 1rem;
+}
+/* -------------------------------------- */
+/* Contenedor con la Lista de Participantes */
 #contenedor2{
     display: grid;
-    grid-area: auto;
+    grid-template-areas: "titulo titulo" "lista botones" ;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 20% 80%;
     justify-content: center;
     border-width: 1px;
     border-style: dotted;
     border-color: rgb(240, 165, 0);
-    text-align: center;   
+    text-align: center;
+    height: 40vh;
+    width: 100%;  
+    padding: 3% 0%;
 }
 .tituloParticipantes{
     width: 100%;
-}
-.listaParticipantes{
-    padding: 1%;
+    grid-area: titulo;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(240, 165, 0), 0 0 0.2em rgb(240, 165, 0);
+    font-size: 1.5rem;
+    padding: 2% 5%;;
 }
 #contenedorParticipantes{
-    width: 50%;
+    width: 100%;
+    grid-area: lista;
+    padding: 2% 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+.listaParticipantes{
+    list-style: disc;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(240, 165, 0), 0 0 0.2em rgb(240, 165, 0);
+    font-size: 1.5rem;
+}
+#contenedorBotones{
+    grid-area: botones;
+    width: 100%;
+    padding: 2% 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#contenedorBotones button{
+    border:2px solid;
+    border-color: black(240, 164, 0, 0.658);
+    border-radius: 50%;
+    height: 5rem;
+    width:5rem;
+    transition: all 1s;
+}
+#contenedorBotones button:hover{
+    border-color: rgb(240, 165, 0);
+    height: 6rem;
+    width:6rem;
+    font-size: 1rem;
+}
+
+/* ----------------------------------------- */
+/* Contenedor boton gasto */
 #contenedor3{
-    padding: 0.5%;
-    display: grid;
-    grid-area: auto;
+    text-align: center;
     justify-content: center;
     border-width: 1px;
     border-style: dotted;
-    border-color: rgb(240, 165, 0);  
+    border-color: rgb(240, 165, 0);
+    padding: 3% 0%;
+    height: 20vh;  
 }
 #btnGasto{
-    height: 100px;
-    width: 300px;
+    height: 9rem;
+    width: 11rem;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(240, 165, 0), 0 0 0.2em rgb(240, 165, 0);
+    font-weight: 500;
+    font-size: 1.3rem;
     border-radius: 50%;
+    animation: heartBeat;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
 }
-#btnGasto:hover{
-    height: 140px;
-    width: 360px;
-}
+/* -------------------------------------- */
+/* Contenedor de formulario gasto */
 #contenedor4{
     text-align: center;
     display: grid;
@@ -72,13 +158,33 @@ button:hover{
     border-width: 1px;
     border-style: dotted;
     border-color: rgb(240, 165, 0);
-    padding: 0.3%;
+    padding: 2% 3%;
 }
-#contenedor5{
-    background-color: rgb(8, 32, 50);
-    padding: 0.3%;
+#formularioGasto input{
+    transition:all 1.5s;
+    width: 8rem;
+    height: 2.7rem;
+    border-radius: 10%;
 }
+#formularioGasto input:focus{
+    width: 10rem;
+    height: 3rem;
+    border-color:rgb(240, 165, 0);
+}
+/* #formParticipantes input{
+    transition:all 1.5s;
+    width: 8rem;
+    height: 2.7rem;
+    border-radius: 10%;
+}
+#formParticipantes input:focus{
+    width: 10rem;
+    height: 3rem;
+    border-color:rgb(240, 165, 0);
+} */
 .gastosAnteriores{
     list-style: none;
+    background-color: rgb(8, 32, 50);
+    padding: 0.3%;
 }
 

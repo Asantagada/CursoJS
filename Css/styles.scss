@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+}
+html {
+    font-size: 62.5%;
+}
+body {
+    text-align: center;
+    margin: 2rem;
+    padding: 2rem;
+    background-image: url(../images/quesos5.jpg);
+    color: rgb(3, 3, 3);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 700;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+button {
+    margin-top: 0.5rem;
+    background-color: rgb(34, 18, 129);
+}
+// -------------------------------------------------------------
+// FORM
+.form-control {
+    width: 30rem;
+}
+// --------------------------------------
+// CARDS
+.card {
+    min-width: 3rem;
+    max-width: 30rem;
+    margin: 1rem 1rem;
+}
+.card-body {
+    width: 30rem ;
+    height: auto;
+}
+
+// -------------------------------------------------------------
+// Header
+header {
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(0, 255, 191);
+    align-items: center;
+    justify-content:center;
+    border:1rem solid;
+    border-color: rgb(247, 0, 255);
+    border-radius: 10rem;
+}
+// -----------------------------------------------------------------
+// MAIN
+h2 { 
+    margin: 2.5rem;
+    background-color: rgb(247, 0, 255);
+    box-shadow: 0 1rem 1rem 0, rgba(0, 0, 0, 0.219);
+    border-radius: 10rem;
+}
+
+// ----------------------------------------------
+// PRIMER CONTENEDOR
+#contenedor1 {
+    margin: 0 auto;
+    width: 50%;
+    height: 15rem;
+    background-color: rgb(43, 255, 138);
+    border-radius: 5rem;
+}
+// ---------------------------------------------------------
+
+// -----------------------------------------------------------
+// CONTENEDOR 2
+#contenedor2 {
+    width: 75%;
+    height: auto;
+    background-color: rgb(245, 119, 119);
+    margin: 0 auto;
+    border-radius: 5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+#contenedorParticipantes {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 5%;
+}
+.listaParticipantes{
+    list-style-image: url(../images/rat.png);
+    justify-content: center;
+
+}
+.listaParticipantes ::marker{
+    width:4rem;
+    height: 8rem;
+    justify-self: center;
+}
+#btnMoneda:hover{
+    height: 3.4rem;
+    width:9rem
+}
+
+// -------------------------------------------------------------
+// BOTON GASTO
+#btnGasto {
+    background-color: rgb(34, 18, 129);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    min-height: 15rem;
+    width: 15rem;
+    border-radius: 100%;
+    margin: 2rem;
+    animation: heartBeat;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+}
+// --------------------------------------------------------------------
+// CONTENEDOR 4
+#contenedor4 {
+    padding: 1rem;
+    width: 75%;
+    height: auto;
+    background-color: rgb(0, 255, 191);
+    margin: 0 auto;
+    border-radius: 5rem;
+
+}
+// -----------------------------------------------------
+// CONTENEDOR GASTOS ANTERIORES
+#gastosAnteriores {
+    margin: 0 auto;
+    width: 60%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}

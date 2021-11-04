@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  text-align: center;
+  margin: 2rem;
+  padding: 2rem;
+  background-image: url(../images/quesos5.jpg);
+  color: #030303;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 700;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+button {
+  margin-top: 0.5rem;
+  background-color: #221281;
+}
+
+.form-control {
+  width: 30rem;
+}
+
+.card {
+  min-width: 3rem;
+  max-width: 30rem;
+  margin: 1rem 1rem;
+}
+
+.card-body {
+  width: 30rem;
+  height: auto;
+}
+
+header {
+  margin: 0 auto;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: #00ffbf;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1rem solid;
+  border-color: #f700ff;
+  border-radius: 10rem;
+}
+
+h2 {
+  margin: 2.5rem;
+  background-color: #f700ff;
+  -webkit-box-shadow: 0 1rem 1rem 0, rgba(0, 0, 0, 0.219);
+          box-shadow: 0 1rem 1rem 0, rgba(0, 0, 0, 0.219);
+  border-radius: 10rem;
+}
+
+#contenedor1 {
+  margin: 0 auto;
+  width: 50%;
+  height: 15rem;
+  background-color: #2bff8a;
+  border-radius: 5rem;
+}
+
+#contenedor2 {
+  width: 75%;
+  height: auto;
+  background-color: #f57777;
+  margin: 0 auto;
+  border-radius: 5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+#contenedorParticipantes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 5%;
+}
+
+.listaParticipantes {
+  list-style-image: url(../images/rat.png);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.listaParticipantes ::marker {
+  width: 4rem;
+  height: 8rem;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+#btnMoneda:hover {
+  height: 3.4rem;
+  width: 9rem;
+}
+
+#btnGasto {
+  background-color: #221281;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  min-height: 15rem;
+  width: 15rem;
+  border-radius: 100%;
+  margin: 2rem;
+  -webkit-animation: heartBeat;
+          animation: heartBeat;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+}
+
+#contenedor4 {
+  padding: 1rem;
+  width: 75%;
+  height: auto;
+  background-color: #00ffbf;
+  margin: 0 auto;
+  border-radius: 5rem;
+}
+
+#gastosAnteriores {
+  margin: 0 auto;
+  width: 60%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+/*# sourceMappingURL=styles.css.map */

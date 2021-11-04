@@ -11,23 +11,31 @@ let funcionesAlmacenados= new FuncionesAlmacenados();
 export class FuncionesGastos{
 // Funcion para cargar los gastos anteriores
     cargarContenedor(array, contenedor){
-        if(array.length<1){
+        if(array.length>1){
             array.forEach(gasto=>{
-                $(contenedor).prepend(`
-                    <li>Id del gasto: ${gasto.idGasto}</li>
-                    <li>Tipo de gasto:${gasto.tipoGasto}</li>
-                    <li>Total del gasto: ${gasto.totalGasto}</li>
-                    <li>Quien pago: ${gasto.quienPago}</li>
-                    <li>Quienes Dividen: ${gasto.quienesDividen}</li>
-                    `)
-            })
+                $(contenedor).prepend(
+                ` 
+                <div class="card">
+                    <div class="card-body">
+                        <li class="card-title card-bottom">Tipo de gasto: ${gasto.tipoGasto}</li>
+                        <li class="card-title card-bottom">Total del gasto: $${gasto.totalGasto}</li>
+                        <li class="card-title card-bottom">Quien pago: ${gasto.quienPago}</li>
+                        <li class="card-title card-bottom">Quienes Dividen: ${gasto.quienesDividen}</li>
+                    </div>
+                </div> 
+                `)}
+            )
         }else{
+            console.log(array)
             $(contenedor).prepend(`
-                    <li>Id del gasto: ${array[0].idGasto}</li>
-                    <li>Tipo de gasto:${array[0].tipoGasto}</li>
-                    <li>Total del gasto: ${array[0].totalGasto}</li>
-                    <li>Quien pago: ${array[0].quienPago}</li>
-                    <li>Quienes Dividen: ${array[0].quienesDividen}</li>
+            <div class="card">
+                <div class="card-body">
+                    <li class="card-title card-bottom">Tipo de gasto: ${array.tipoGasto}</li>
+                    <li class="card-title card-bottom">Total del gasto: ${array.totalGasto}</li>
+                    <li class="card-title card-bottom">Quien pago: ${array.quienPago}</li>
+                    <li class="card-title card-bottom">Quienes Dividen: ${array.quienesDividen}</li>
+                </div>
+            </div> 
                     `)
         }
     }
@@ -71,6 +79,7 @@ export class FuncionesGastos{
     }
 // Esta funcion asigna el gasto y actualiza el saldo de quien pago la totalidad del gasto
     asignarGasto(gasto,personas){
+        console.log(gasto)
         personas.forEach(element => {
             if(element.nombre == gasto.quienPago){
                 element.saldo += gasto.totalGasto;
@@ -93,14 +102,16 @@ export class FuncionesGastos{
 // Esta funcion asigna el gasto segun los datos dados, actualiza los saldos, limpia los datos del local storage
 // y los actualiza con los nuevos valores
     confirmarGasto(gastos, personas){
+        let ultimaPosicion=gastos.length-1;
+        console.log(ultimaPosicion)
         $("#contenedor4").hide()
-        this.asignarGasto(gastos[0],personas);
-        this.dividirCuenta(gastos[0], personas);
+        this.asignarGasto(gastos[ultimaPosicion],personas);
+        this.dividirCuenta(gastos[ultimaPosicion], personas);
         funcionesParticipantes.mostrarParticipantes(personas);
-        this.cargarContenedor(gastos,"#gastosAnteriores");
+        this.cargarContenedor(gastos[ultimaPosicion],"#gastosAnteriores");
         localStorage.clear();
         funcionesAlmacenados.almacenarElementos("Participantes", personas);
-        funcionesAlmacenados.almacenarElementos("Gastos", gastos)
+        funcionesAlmacenados.almacenarElementos("Gastos", gastos);
     }
 
 }

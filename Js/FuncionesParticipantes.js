@@ -5,8 +5,14 @@ export class FuncionesParticipantes{
         $("#contenedor1").fadeOut(1000);
         $("#contenedorParticipantes").empty()
         array.forEach(elemento => {
-            let valor= ".-" + elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
-            $("#contenedorParticipantes").append(`<li class = "listaParticipantes">${valor}</li>`)
+            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
+            $("#contenedorParticipantes").append(
+                `
+                <div class="card">
+                    <div class="card-body">
+                        <li class = "listaParticipantes card-title">${valor}</li>
+                    </div>
+                </div> `)
         });
         $("#contenedor2").show()
         $("#contenedor3").show()
@@ -29,8 +35,15 @@ export class FuncionesParticipantes{
     crearLista(array){
         $("#contenedorParticipantes").empty();
         array.forEach(elemento => {
-            let valor= ".-" + elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
-            $("#contenedorParticipantes").append(`<li class = "listaParticipantes">${valor}</li>`)
+            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ int(elemento.saldo);
+            $("#contenedorParticipantes").append(
+                `
+            <div class="card">
+                <div class="card-body">
+                    <li class = "listaParticipantes card-title">${valor}</li>
+                </div>
+            </div>
+            `)
         });
         $("#contenedor2").show();
     }  

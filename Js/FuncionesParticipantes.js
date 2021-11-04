@@ -35,7 +35,7 @@ export class FuncionesParticipantes{
     crearLista(array){
         $("#contenedorParticipantes").empty();
         array.forEach(elemento => {
-            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ int(elemento.saldo);
+            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
             $("#contenedorParticipantes").append(
                 `
             <div class="card">

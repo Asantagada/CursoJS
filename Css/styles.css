@@ -92,7 +92,7 @@ header img {
 #contenedor1 {
   margin: 2% auto;
   width: 50%;
-  background-color: #00ffbf;
+  background-color: #2bff8a;
   border-radius: 10rem;
   height: auto;
   padding: 1rem;
@@ -156,6 +156,8 @@ header img {
   width: auto;
   -ms-grid-column-align: center;
       justify-self: center;
+  border: 2px dotted;
+  border-color: #f57777;
 }
 
 #contenedor2 {
@@ -247,7 +249,7 @@ header img {
 #contenedor4 {
   width: 65%;
   height: auto;
-  background-color: #00ffbf;
+  background-color: #2bff8a;
   margin: 2% auto;
   border-radius: 10rem;
   height: auto;

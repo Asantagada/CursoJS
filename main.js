@@ -17,9 +17,9 @@ let funcionesGenerales= new FuncionesGenerales();
 
 
 // Inicia escondiendo determinados elementos del html para evitar que se carguen datos en orden incorrecto
-// $("#contenedor2").hide();
-// $("#contenedor3").hide();
-// $("#contenedor4").hide();
+$("#contenedor2").hide();
+$("#contenedor3").hide();
+$("#contenedor4").hide();
 // Primero revisa el local storage para chequear si ya hay partipantes y gastos anteriores
 general.personas= funcionesAlmacenados.obtenerAlmacenados("Participantes")
 general.gastos = funcionesAlmacenados.obtenerAlmacenados("Gastos");

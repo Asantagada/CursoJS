@@ -12,61 +12,58 @@
 </head>
 <body>
     <header>
-        <img src="./images/logorata.png" alt="">
+        <a href="">        
+            <img src="./images/logorata.png" title="Si me haces click reinicio la agenda"alt="" id="btnReiniciar">
+        </a>
         <h1 id="tituloPrincipal" >Agenda de Lauchas</h1>
     </header>
     
     <main>
-    <div id="contenedor1" name ="contenedor1" >
-        <h2 id="tituloFormParticipantes">Ingrese los nombres de las personas que participaran de la agenda</h2>
-        <form id="formParticipantes">
-            <input type="text" placeholder="Nombre" id="inputAgenda" class="form-control me-2" >
-            <button id ="btnAgenda" class="btn btn-primary btn-sm" type ="button" data-bs-placement="top" title="Agrega otro participante">Agregar</button>
-            <button id="btnLista" class="btn btn-primary btn-sm" type= "button" data-bs-toggle="tooltip" data-bs-placement="top" title="Clickea cuando hayas terminado">Continuar</button>
-        </form>
-    </div>
-    </main>
-
-
-    <section>
-    <div id="contenedor2" >
-        <h2 class= "tituloParticipantes">Participantes: </h2>
-        <div id="contenedorParticipantes"></div>
-        <div id="contenedorBotones">
-            <button id="btnEliminar"class="btn btn-danger">Repetir Proceso</button>
-            <button id="btnConfirmar"class="btn btn-warning">Confirmar</button>
-            <button id="btnMoneda"  class="btn btn-success" title="Cambia la deuda a dolar">Cambiar a dolar</button> 
-        </div>  
-    </div>
-</section>
-    <div id="contenedor3">
-        <button id= "btnGasto"class="btn btn-dark" title="Registra tus gastos">Agrega un nuevo gasto</button>
-    </div>
-    <div id="contenedor4" >
-        <h2>
-            Descripcion del gasto
-        </h2>
-        <form id ="formularioGasto" >
-            <input class="form-control me-2"  type="text" placeholder="De que fue el gasto: " id ="tipoGasto">
-            <br>
-            <input class="form-control me-2" type="number" placeholder="Cual es el total del gasto: " id ="totalGasto">
-            <br>
-            <label>Quien pago la totalidad del gasto: </label>
-            <br>
-            <select id="quienPago"></select>
-            <br>            
-            <label class="form-control me-2" id ="checkboxEntreQuienes">Entre quienes se divide el gasto:<br></label>
-            <br>
-            <input type="button"class="btn btn-primary btn-sm" value="Listo" id="btnMostrarGasto">
-            <br>
-        </form>
-        <div id="contenedorGastos"></div>
-        <div id="contenedorBotones">
-            <button id="btnConfirmarGasto" class="btn btn-primary btn-sm">Confirmar Gasto</button>
-            <button id="btnCancelarGasto" class="btn btn-primary btn-sm">Repetir Proceso</button> 
+        <!-- PRIMER CONTENEDOR (EN el que se agregan los participantes) -->
+        <div id="contenedor1" name ="contenedor1" >
+            <h2 id="tituloFormParticipantes">Declaracion de participantes</h2>
+            <form id="formParticipantes">
+                <h3>Agregue de a uno los participantes que formaran parte de la agenda</h3>
+                <button id ="btnAgenda" class="btn btn-secondary" type ="button" title="Agrega otro participante">Agregar</button>
+                <input type="text" placeholder="Nombre" id="inputAgenda" class="form-control me-2" >
+                <button id="btnLista" class="btn btn-success" type= "button" data-bs-toggle="tooltip" data-bs-placement="top" title="Clickea cuando hayas terminado">Continuar</button>
+            </form>
         </div>
-    </div>
-    <div id="gastosAnteriores"></div>
+        <!-- CONTENEDOR 2 (El de la Lista de participantes) -->
+        <div id="contenedor2" >
+            <h2 class= "tituloParticipantes">Participantes: </h2>
+            <div id="contenedorParticipantes"></div>
+            <div id="contenedorBotones">
+                <button id="btnEliminar"class="btn btn-danger" title="Borra la lista y volve a cargar participantes">Repetir Proceso</button>
+                <button id="btnConfirmar"class="btn btn-warning">Confirmar</button>
+                <button id="btnMoneda"  class="btn btn-success" title="Cambia la deuda a dolar">Cambiar a dolar</button> 
+            </div>  
+        </div>
+        <!-- CONTENEDOR 3 (El que contiene el boton GASTO) -->
+        <div id="contenedor3">
+            <button id= "btnGasto"class="btn btn-dark" title="Registra tus gastos">Agrega un nuevo gasto</button>
+        </div>
+        <!-- CONTENEDOR 4 (El del formulario de Gastos) -->
+        <div id="contenedor4" >
+            <h2 id="descGasto">Descripcion del gasto</h2>
+            <form id ="formularioGasto" >
+                <input class="form-control me-2"  type="text" placeholder="De que fue el gasto: " id ="tipoGasto">
+                <input class="form-control me-2" type="number" placeholder="Cual es el total del gasto: " id ="totalGasto">
+                <label>Quien pago la totalidad del gasto: </label>
+                <select id="quienPago"></select>           
+                <label for="">Entre quienes se divide el gasto:<label id ="checkboxEntreQuienes"></label></label>
+                <input type="button" class="btn btn-success" value="Listo" id="btnMostrarGasto">
+            </form>
+            <div id="contenedorGastos"></div>
+            <div id="contenedorBotones">                
+                <button id="btnCancelarGasto" class="btn btn-danger">Repetir Proceso</button> 
+                <button id="btnConfirmarGasto" class="btn btn-success">Confirmar Gasto</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="gastosAnteriores"></div>
+    </footer>
 
 
     <!-- SCRIPTS -->

@@ -1,3 +1,5 @@
+// -----------------------------------------------------------------
+// USO GENERAL
 * {
     margin: 0;
     padding: 0;
@@ -10,8 +12,6 @@ html {
 }
 body {
     text-align: center;
-    margin: 2rem;
-    padding: 2rem;
     background-image: url(../images/quesos5.jpg);
     color: rgb(3, 3, 3);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -21,30 +21,35 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+}   
 button {
     margin-top: 0.5rem;
     background-color: rgb(34, 18, 129);
 }
-// -------------------------------------------------------------
-// FORM
-.form-control {
-    width: 30rem;
+h2 { 
+    background-color: rgb(247, 0, 255);
+    border-radius: 10rem;
+    width: 60%;
+    // height: auto;
 }
-// --------------------------------------
-// CARDS
 .card {
-    min-width: 3rem;
-    max-width: 30rem;
+    // min-width: 50%;
+    // max-width: 100%;
+    width: 80%;
     margin: 1rem 1rem;
+    border-radius: 5rem;
 }
 .card-body {
-    width: 30rem ;
+    width: 100% ;
     height: auto;
 }
+.form-control {
+    width: 20%;
+}
+
 
 // -------------------------------------------------------------
-// Header
+// Header (TItulo e imagen)
 header {
     margin: 0 auto;
     width: 50%;
@@ -56,62 +61,103 @@ header {
     border:1rem solid;
     border-color: rgb(247, 0, 255);
     border-radius: 10rem;
+    img{
+        animation:tada;
+        animation-iteration-count: infinite;
+        animation-duration: 5s;
+    }
 }
-// -----------------------------------------------------------------
-// MAIN
-h2 { 
-    margin: 2.5rem;
-    background-color: rgb(247, 0, 255);
-    box-shadow: 0 1rem 1rem 0, rgba(0, 0, 0, 0.219);
-    border-radius: 10rem;
-}
-
 // ----------------------------------------------
-// PRIMER CONTENEDOR
+// PRIMER CONTENEDOR (EN el que se agregan los participantes)
 #contenedor1 {
+    margin: 2% auto;
+    width: 50%;
+    background-color: rgb(0, 255, 191);
+    border-radius: 10rem;
+    height: auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 70%;
+    border: 2px solid;
+    border-color: rgb(245, 119, 119);
+}
+#tituloFormParticipantes{
     margin: 0 auto;
     width: 50%;
-    height: 15rem;
-    background-color: rgb(43, 255, 138);
-    border-radius: 5rem;
+    height: 100%;
+    padding: 1% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-// ---------------------------------------------------------
-
+#formParticipantes{
+    padding:2% 1%;
+    margin:1%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 50% 50%;
+    justify-content: center;
+    align-items: center;
+    h3{
+        height: 100%;
+        width: 100%;
+        font-size: 1.4rem;
+    }
+    input{
+        width: 50%;
+        justify-self: center;
+    }
+    button{
+        width: auto;
+        justify-self: center;
+    }
+}
 // -----------------------------------------------------------
-// CONTENEDOR 2
+// CONTENEDOR 2 (El de la Lista de participantes)
 #contenedor2 {
-    width: 75%;
+    width: 60%;
     height: auto;
     background-color: rgb(245, 119, 119);
-    margin: 0 auto;
-    border-radius: 5rem;
+    margin: 2% auto;
+    padding:1rem;
+    border-radius: 10rem;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
+    .tituloParticipantes{
+        margin: 0 auto;
+        width: 50%;
+        height: 100%;
+        padding: 1% ;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        border: 2px solid;
+        border-color: rgb(0, 255, 191);     
+    }
 }
 #contenedorParticipantes {
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: 0 auto;
-    padding: 2rem;
-    gap: 5%;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    margin: 0% auto;
+    padding: 1rem;
+    font-size: 1.2rem;
 }
 .listaParticipantes{
     list-style-image: url(../images/rat.png);
+    width: 100%;
+    text-align: left;
+}
+#contenedorBotones{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-
+    width: auto;
+    height: auto;
 }
-.listaParticipantes ::marker{
-    width:4rem;
-    height: 8rem;
-    justify-self: center;
-}
-#btnMoneda:hover{
-    height: 3.4rem;
-    width:9rem
-}
-
 // -------------------------------------------------------------
 // BOTON GASTO
 #btnGasto {
@@ -126,17 +172,77 @@ h2 {
     animation: heartBeat;
     animation-iteration-count: infinite;
     animation-duration: 5s;
+    border: 2px solid;
+    border-color: rgb(0, 255, 191); 
 }
 // --------------------------------------------------------------------
-// CONTENEDOR 4
+// CONTENEDOR 4 (El del formulario de Gastos)
 #contenedor4 {
-    padding: 1rem;
-    width: 75%;
+    width: 65%;
     height: auto;
     background-color: rgb(0, 255, 191);
-    margin: 0 auto;
-    border-radius: 5rem;
+    margin: 2% auto;
+    border-radius: 10rem;
+    height: auto;
+    padding:1rem;
+    h2{
+        margin: 0 auto;
+        width: 50%;
+        height: 100%;
+        padding: 1% ;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        border: 4px solid;
+        border-color: rgb(245, 119, 119); 
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;    
+    }
+    #formularioGasto{
+        margin: 0% auto;
+        width: 80%;
+        padding-top: 1%;
+        font-size: 1.2rem;
+        input{
+            width: 50%;
+            margin:1% 0%;
+            border: 2px solid;
+            border-color: rgb(245, 119, 119); 
+        }
+        select{
+            width: auto;
+            margin:1% 0%;
+            border: 2px solid;
+            border-color: rgb(245, 119, 119);   
+        }
+        label{
+            width:80%;
+            #checkboxEntreQuienes{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                label{
+                    width: 100%;
+                    text-align:start;
+                }
+            }
+        }
 
+    }
+    #contenedorGastos{
+        margin: 0% auto;
+        width: 50%;
+        text-align: start;
+    }
+    #contenedorBotones{
+        margin: 0% auto;
+        width: 50%;
+        button{
+            width:auto;
+            border: 2px solid;
+            border-color: rgb(245, 119, 119);  
+        }
+    }
 }
 // -----------------------------------------------------
 // CONTENEDOR GASTOS ANTERIORES
@@ -145,4 +251,16 @@ h2 {
     width: 60%;
     display: grid;
     grid-template-columns: 50% 50%;
+    justify-content: space-between;
+    text-align: start;
+    div{
+        margin:1% auto;
+        width: 100%;
+        div{ 
+            li{
+                padding-left: 3%;
+                font-size: 1.2rem;
+            }
+        }
+    }
 }

@@ -17,9 +17,9 @@ let funcionesGenerales= new FuncionesGenerales();
 
 
 // Inicia escondiendo determinados elementos del html para evitar que se carguen datos en orden incorrecto
-$("#contenedor2").hide();
-$("#contenedor3").hide();
-$("#contenedor4").hide();
+// $("#contenedor2").hide();
+// $("#contenedor3").hide();
+// $("#contenedor4").hide();
 // Primero revisa el local storage para chequear si ya hay partipantes y gastos anteriores
 general.personas= funcionesAlmacenados.obtenerAlmacenados("Participantes")
 general.gastos = funcionesAlmacenados.obtenerAlmacenados("Gastos");
@@ -27,9 +27,14 @@ general.gastos = funcionesAlmacenados.obtenerAlmacenados("Gastos");
 // en el html y dan paso a cargar nuevos gastos directamente en el html y en los array correspondientes
 if(general.personas.length !=0  ) {
     funcionesParticipantes.mostrarParticipantes(general.personas);
+    $("#btnReiniciar").click(()=>{funcionesGenerales.eliminarLista(general.personas, "#gastosAnteriores"),
+                                funcionesGenerales.eliminarLista(general.gastos, "#gastosAnteriores"),
+                                localStorage.clear(),
+                                location.reload})
     if(general.gastos.length!=0){
         $("#btnGasto").show();
         funcionesGastos.cargarContenedor(general.gastos, "#gastosAnteriores")
+        console.log(general.gastos)
     }
 };
 // Luego se habilitan los botones para crear agregar participantes
@@ -49,7 +54,11 @@ $("#btnMostrarGasto").click(()=>{funcionesGastos.mostrarGasto(Gasto, general)});
 // Una vez mostrado el gasto se muestran los 2 botones para repetir el proceso o confirmar
 $("#btnCancelarGasto").click(()=>{funcionesGenerales.eliminarLista(general.gastos[0].quienesDividen,"#contenedorGastos"),
                             $("#btnConfirmarGasto").hide(),
-                            $("#btnCancelarGasto").hide()});
+                            $("#btnCancelarGasto").hide(),
+                            $("#descGasto").hide()});
+// Se confirma el gasto, y se actualizan los saldos de los participantes,
+// se almacenan tanto los gastos como los participantes con sus modificaciones,
+// e imprime una card con todo el detalle del gasto que queda registrado en el footer
 $("#btnConfirmarGasto").click(()=>{funcionesGastos.confirmarGasto(general.gastos, general.personas)})
 
 

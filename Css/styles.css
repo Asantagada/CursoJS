@@ -13,8 +13,6 @@ html {
 
 body {
   text-align: center;
-  margin: 2rem;
-  padding: 2rem;
   background-image: url(../images/quesos5.jpg);
   color: #030303;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -39,19 +37,25 @@ button {
   background-color: #221281;
 }
 
-.form-control {
-  width: 30rem;
+h2 {
+  background-color: #f700ff;
+  border-radius: 10rem;
+  width: 60%;
 }
 
 .card {
-  min-width: 3rem;
-  max-width: 30rem;
+  width: 80%;
   margin: 1rem 1rem;
+  border-radius: 5rem;
 }
 
 .card-body {
-  width: 30rem;
+  width: 100%;
   height: auto;
+}
+
+.form-control {
+  width: 20%;
 }
 
 header {
@@ -76,64 +80,149 @@ header {
   border-radius: 10rem;
 }
 
-h2 {
-  margin: 2.5rem;
-  background-color: #f700ff;
-  -webkit-box-shadow: 0 1rem 1rem 0, rgba(0, 0, 0, 0.219);
-          box-shadow: 0 1rem 1rem 0, rgba(0, 0, 0, 0.219);
-  border-radius: 10rem;
+header img {
+  -webkit-animation: tada;
+          animation: tada;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
 }
 
 #contenedor1 {
+  margin: 2% auto;
+  width: 50%;
+  background-color: #00ffbf;
+  border-radius: 10rem;
+  height: auto;
+  padding: 1rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  -ms-grid-rows: 30% 70%;
+      grid-template-rows: 30% 70%;
+  border: 2px solid;
+  border-color: #f57777;
+}
+
+#tituloFormParticipantes {
   margin: 0 auto;
   width: 50%;
-  height: 15rem;
-  background-color: #2bff8a;
-  border-radius: 5rem;
+  height: 100%;
+  padding: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#formParticipantes {
+  padding: 2% 1%;
+  margin: 1%;
+  height: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 70% 30%;
+      grid-template-columns: 70% 30%;
+  -ms-grid-rows: 50% 50%;
+      grid-template-rows: 50% 50%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#formParticipantes h3 {
+  height: 100%;
+  width: 100%;
+  font-size: 1.4rem;
+}
+
+#formParticipantes input {
+  width: 50%;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+#formParticipantes button {
+  width: auto;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 #contenedor2 {
-  width: 75%;
+  width: 60%;
   height: auto;
   background-color: #f57777;
-  margin: 0 auto;
-  border-radius: 5rem;
+  margin: 2% auto;
+  padding: 1rem;
+  border-radius: 10rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
+}
+
+#contenedor2 .tituloParticipantes {
+  margin: 0 auto;
+  width: 50%;
+  height: 100%;
+  padding: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 2px solid;
+  border-color: #00ffbf;
 }
 
 #contenedorParticipantes {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  gap: 5%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 75%;
+  margin: 0% auto;
+  padding: 1rem;
+  font-size: 1.2rem;
 }
 
 .listaParticipantes {
   list-style-image: url(../images/rat.png);
+  width: 100%;
+  text-align: left;
+}
+
+#contenedorBotones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.listaParticipantes ::marker {
-  width: 4rem;
-  height: 8rem;
-  -ms-grid-column-align: center;
-      justify-self: center;
-}
-
-#btnMoneda:hover {
-  height: 3.4rem;
-  width: 9rem;
+  width: auto;
+  height: auto;
 }
 
 #btnGasto {
@@ -151,15 +240,96 @@ h2 {
           animation-iteration-count: infinite;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
+  border: 2px solid;
+  border-color: #00ffbf;
 }
 
 #contenedor4 {
-  padding: 1rem;
-  width: 75%;
+  width: 65%;
   height: auto;
   background-color: #00ffbf;
+  margin: 2% auto;
+  border-radius: 10rem;
+  height: auto;
+  padding: 1rem;
+}
+
+#contenedor4 h2 {
   margin: 0 auto;
-  border-radius: 5rem;
+  width: 50%;
+  height: 100%;
+  padding: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 4px solid;
+  border-color: #f57777;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+#contenedor4 #formularioGasto {
+  margin: 0% auto;
+  width: 80%;
+  padding-top: 1%;
+  font-size: 1.2rem;
+}
+
+#contenedor4 #formularioGasto input {
+  width: 50%;
+  margin: 1% 0%;
+  border: 2px solid;
+  border-color: #f57777;
+}
+
+#contenedor4 #formularioGasto select {
+  width: auto;
+  margin: 1% 0%;
+  border: 2px solid;
+  border-color: #f57777;
+}
+
+#contenedor4 #formularioGasto label {
+  width: 80%;
+}
+
+#contenedor4 #formularioGasto label #checkboxEntreQuienes {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#contenedor4 #formularioGasto label #checkboxEntreQuienes label {
+  width: 100%;
+  text-align: start;
+}
+
+#contenedor4 #contenedorGastos {
+  margin: 0% auto;
+  width: 50%;
+  text-align: start;
+}
+
+#contenedor4 #contenedorBotones {
+  margin: 0% auto;
+  width: 50%;
+}
+
+#contenedor4 #contenedorBotones button {
+  width: auto;
+  border: 2px solid;
+  border-color: #f57777;
 }
 
 #gastosAnteriores {
@@ -169,5 +339,19 @@ h2 {
   display: grid;
   -ms-grid-columns: 50% 50%;
       grid-template-columns: 50% 50%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: start;
+}
+
+#gastosAnteriores div {
+  margin: 1% auto;
+  width: 100%;
+}
+
+#gastosAnteriores div div li {
+  padding-left: 3%;
+  font-size: 1.2rem;
 }
 /*# sourceMappingURL=styles.css.map */

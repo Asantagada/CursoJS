@@ -9,9 +9,10 @@ export class FuncionesGenerales{
     crearCheckbox(array){    
         let contenido=" "    
         array.forEach(persona=>{
-            contenido +=`<label for="checkbox${persona.nombre}">${persona.nombre}
+            contenido +=`<label for="checkbox${persona.nombre}">
                         <input type="checkbox" 
                         class ="quienesDividen" value ="${persona.nombre}">
+                        ${persona.nombre}
                         </label>`
         })
         return contenido
@@ -24,4 +25,11 @@ export class FuncionesGenerales{
         })
         $("#quienPago").append(contenido)
     }
+//     reiniciarTodo(array){
+//         localStorage.clear();
+//         let personasVacio= personas.splice(0, array.length);
+//         let gastosVacio = gastos.splice(0, array.length);
+//         return        personasVacio=personas;
+
+//     }
 }

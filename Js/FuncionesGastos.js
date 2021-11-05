@@ -11,7 +11,7 @@ let funcionesAlmacenados= new FuncionesAlmacenados();
 export class FuncionesGastos{
 // Funcion para cargar los gastos anteriores
     cargarContenedor(array, contenedor){
-        if(array.length>1){
+        if(array.length>0){
             array.forEach(gasto=>{
                 $(contenedor).prepend(
                 ` 
@@ -26,7 +26,6 @@ export class FuncionesGastos{
                 `)}
             )
         }else{
-            console.log(array)
             $(contenedor).prepend(`
             <div class="card">
                 <div class="card-body">
@@ -51,9 +50,11 @@ export class FuncionesGastos{
         $("#formularioGasto").show();
         $("#btnConfirmarGasto").hide();
         $("#btnCancelarGasto").hide();
+        $("#descGasto").show();
     }
 // Se muestra el gasto y las opciones de confirmar o repetir
     mostrarGasto(clase1,general){
+        $("#contenedorGastos").empty();
         let idGasto= 1;
         const tipoGasto= $("#tipoGasto").val();
         const iTotal =$("#totalGasto");
@@ -69,7 +70,7 @@ export class FuncionesGastos{
                     <li>Total del gasto: ${totalGasto}</li>
                     <li>Quien pago: ${quienPago}</li>
                     <li>Quienes Dividen: ${quienesDividen}</li>
-                    `)
+                    `);
         $("#contenedorGastos").show();
         $("#btnConfirmarGasto").show();
         $("#btnCancelarGasto").show();

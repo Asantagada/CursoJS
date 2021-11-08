@@ -356,4 +356,29 @@ header img {
   padding-left: 3%;
   font-size: 1.2rem;
 }
+
+@media only screen and (max-width: 767px) {
+  header {
+    width: 80%;
+  }
+  #contenedor1 {
+    width: 90%;
+  }
+  #contenedor2 {
+    width: 90%;
+  }
+  #contenedorParticipantes {
+    width: 100%;
+  }
+  .card {
+    width: 100%;
+  }
+  #contenedor4 {
+    width: 90%;
+  }
+  #gastosAnteriores {
+    width: 70%;
+    display: block;
+  }
+}
 /*# sourceMappingURL=styles.css.map */

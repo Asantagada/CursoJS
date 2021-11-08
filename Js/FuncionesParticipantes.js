@@ -5,7 +5,7 @@ export class FuncionesParticipantes{
         $("#contenedor1").fadeOut(1000);
         $("#contenedorParticipantes").empty()
         array.forEach(elemento => {
-            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
+            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ (elemento.saldo).toFixed(2);
             $("#contenedorParticipantes").append(
                 `
                 <div class="card">
@@ -35,7 +35,7 @@ export class FuncionesParticipantes{
     crearLista(array){
         $("#contenedorParticipantes").empty();
         array.forEach(elemento => {
-            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ elemento.saldo;
+            let valor= elemento.nombre +"  Cuenta con un saldo de: $"+ (elemento.saldo).toFixed(2);
             $("#contenedorParticipantes").append(
                 `
             <div class="card">

@@ -8,7 +8,7 @@ export class FuncionesApis{
                 let valorDolar = parseFloat(responsse[1].casa.compra);
                 personas.forEach(persona=>{
                     let saldoActualizado= persona.saldo/valorDolar;
-                    persona.saldo= saldoActualizado.toFixed(2)
+                    persona.saldo= saldoActualizado;
                     
                 })
                 funcionesParticipantes.mostrarParticipantes(personas)

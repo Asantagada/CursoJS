@@ -1,3 +1,4 @@
+// Clase gasto
 export class Gasto {
     constructor (idGasto,tipoGasto, totalGasto, quienPago, quienesDividen){
         this.idGasto=idGasto;

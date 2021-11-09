@@ -27,6 +27,7 @@ general.gastos = funcionesAlmacenados.obtenerAlmacenados("Gastos");
 // en el html y dan paso a cargar nuevos gastos directamente en el html y en los array correspondientes
 if(general.personas.length !=0  ) {
     funcionesParticipantes.mostrarParticipantes(general.personas);
+    // Al clickear el icono del logo se reinicia la Agenda
     $("#btnReiniciar").click(()=>{funcionesGenerales.eliminarLista(general.personas, "#gastosAnteriores"),
                                 funcionesGenerales.eliminarLista(general.gastos, "#gastosAnteriores"),
                                 localStorage.clear(),
@@ -34,20 +35,19 @@ if(general.personas.length !=0  ) {
     if(general.gastos.length!=0){
         $("#btnGasto").show();
         funcionesGastos.cargarContenedor(general.gastos, "#gastosAnteriores")
-        console.log(general.gastos)
     }
 };
-// Luego se habilitan los botones para crear agregar participantes
+// Se habilitan los botones para agregar participantes a la agenda
 $("#btnAgenda").click(()=>{funcionesParticipantes.agregarParticipante(Participante, general)})
 $("#btnLista").click(()=>{funcionesParticipantes.crearLista(general.personas)})
 $("#btnMoneda").click(()=>{funcionesApis.cambiarMoneda(URLDolar, general.personas)})
-// Una vez que se hayan cargado participantes se muestran estos botones
-// Para confirmar o repetir el proceso
+// Una vez cargado el contenedor con los particiopantes se solicita confirmacion o repetir el proceso
 $("#btnEliminar").click(()=>{funcionesGenerales.eliminarLista(general.personas, "#contenedorParticipantes"),
                             $("#contenedor2").hide()})
 $("#btnConfirmar").click(()=>{funcionesParticipantes.mostrarParticipantes(general.personas), 
                 funcionesAlmacenados.almacenarElementos("Participantes", general.personas)})
-// Una vez cargados los participantes y almacenados, se muestra el boton para agregar gastos
+// Una vez confirmados los participantes y almacenados,se esconde el contenedor anterior 
+// Y se muestra el boton para agregar gastos
 $("#btnGasto").click(()=>{funcionesGastos.determinarGasto(general.personas)});
 // Al hacer click abre un formulario con un boton que obtiene los valores y muestra los resultados
 $("#btnMostrarGasto").click(()=>{funcionesGastos.mostrarGasto(Gasto, general)});
@@ -56,9 +56,9 @@ $("#btnCancelarGasto").click(()=>{funcionesGenerales.eliminarLista(general.gasto
                             $("#btnConfirmarGasto").hide(),
                             $("#btnCancelarGasto").hide(),
                             $("#descGasto").hide()});
-// Se confirma el gasto, y se actualizan los saldos de los participantes,
-// se almacenan tanto los gastos como los participantes con sus modificaciones,
-// e imprime una card con todo el detalle del gasto que queda registrado en el footer
+// Al confirmar se guarda el gasto en el localStorage, actualiza los saldos de los participantes
+// Y actualiza los mismos en el array, contenedor y local storage
+// Finalmente imprime una card con todo el detalle del gasto que queda registrado en el footer
 $("#btnConfirmarGasto").click(()=>{funcionesGastos.confirmarGasto(general.gastos, general.personas)})
 
 

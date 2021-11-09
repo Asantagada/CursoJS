@@ -1,5 +1,5 @@
 export class FuncionesAlmacenados{
-// Funcion para obtener los almacenados
+// Funcion para obtener los almacenados comprobando si es un array lo recorre 
     obtenerAlmacenados(clave){
         const almacenados = JSON.parse(localStorage.getItem(clave));
         const elementos =[];

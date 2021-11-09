@@ -1,3 +1,4 @@
+// Clase Participante
 export class Participante {
     constructor (id, nombre, saldo ){
         this.id=id;

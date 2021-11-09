@@ -2,6 +2,8 @@ import {FuncionesParticipantes} from "./FuncionesParticipantes.js";
 let funcionesParticipantes= new FuncionesParticipantes();
 
 export class FuncionesApis{
+    // Funcion para hacer un pedido a la Api con valor del dolar y actualizar tanto el array
+    // como el contenedor que corresponde
     cambiarMoneda(URL, personas){
         $.get(URL, function (responsse, state){
             if(state==="success"){

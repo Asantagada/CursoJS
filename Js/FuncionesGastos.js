@@ -9,7 +9,7 @@ let funcionesAlmacenados= new FuncionesAlmacenados();
 
 
 export class FuncionesGastos{
-// Funcion para cargar los gastos anteriores
+// Funcion para cargar los gastos anteriores en el Footer, diferenciando si es un Array o no
     cargarContenedor(array, contenedor){
         if(array.length>0){
             array.forEach(gasto=>{
@@ -58,29 +58,32 @@ export class FuncionesGastos{
         let idGasto= 1;
         const tipoGasto= $("#tipoGasto").val();
         const iTotal =$("#totalGasto");
-        let totalGasto= parseFloat(iTotal.val());
-        const quienPago= $("#quienPago").val();
-        let quienesDividen= [];
-        const valorCheckbox = $("input[type=checkbox]:checked").map(function () {
+        let totalGasto= parseFloat(iTotal.val());  
+        if(totalGasto != "NaN"){ 
+            const quienPago= $("#quienPago").val();
+            let quienesDividen= [];
+            const valorCheckbox = $("input[type=checkbox]:checked").map(function () {
                                 return quienesDividen.push($(this).val())
                                 })
-        $("#formularioGasto").hide();
-        $("#contenedorGastos").prepend(`
+            $("#formularioGasto").hide();
+            $("#contenedorGastos").prepend(`
                     <li>Tipo de gasto:${tipoGasto}</li>
                     <li>Total del gasto: ${totalGasto}</li>
                     <li>Quien pago: ${quienPago}</li>
                     <li>Quienes Dividen: ${quienesDividen}</li>
                     `);
-        $("#contenedorGastos").show();
-        $("#btnConfirmarGasto").show();
-        $("#btnCancelarGasto").show();
-        let gasto = new clase1 (idGasto, tipoGasto, totalGasto, quienPago, quienesDividen);
-        general.gastos.push(gasto)
-        idGasto= idGasto++;                        
+            $("#contenedorGastos").show();
+            $("#btnConfirmarGasto").show();
+            $("#btnCancelarGasto").show();
+            let gasto = new clase1 (idGasto, tipoGasto, totalGasto, quienPago, quienesDividen);
+            general.gastos.push(gasto)
+            idGasto= idGasto++;
+        }else{
+            alert("El total debe ser un numero"); 
+        }                   
     }
 // Esta funcion asigna el gasto y actualiza el saldo de quien pago la totalidad del gasto
     asignarGasto(gasto,personas){
-        console.log(gasto)
         personas.forEach(element => {
             if(element.nombre == gasto.quienPago){
                 element.saldo += gasto.totalGasto;
@@ -104,7 +107,6 @@ export class FuncionesGastos{
 // y los actualiza con los nuevos valores
     confirmarGasto(gastos, personas){
         let ultimaPosicion=gastos.length-1;
-        console.log(ultimaPosicion)
         $("#contenedor4").hide()
         this.asignarGasto(gastos[ultimaPosicion],personas);
         this.dividirCuenta(gastos[ultimaPosicion], personas);

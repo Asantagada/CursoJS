@@ -66,12 +66,15 @@ header {
         animation-iteration-count: infinite;
         animation-duration: 5s;
     }
+    h1{
+        font-size: calc(1.375rem + 1.2vw);
+    }
 }
 // ----------------------------------------------
 // PRIMER CONTENEDOR (EN el que se agregan los participantes)
 #contenedor1 {
     margin: 2% auto;
-    width: 50%;
+    width: 70%;
     background-color: #2bff8a;
     border-radius: 10rem;
     height: auto;
@@ -103,7 +106,7 @@ header {
     h3{
         height: 100%;
         width: 100%;
-        font-size: 1.4rem;
+        font-size: calc(1.1rem + 0.4vw);
     }
     input{
         width: 50%;
@@ -198,7 +201,8 @@ header {
         border: 4px solid;
         border-color: rgb(245, 119, 119); 
         margin-bottom: 1rem;
-        padding-bottom: 1rem;    
+        padding-bottom: 1rem;   
+        font-size: calc(1rem + .9vw); 
     }
     #formularioGasto{
         margin: 0% auto;
@@ -270,7 +274,7 @@ header {
 // Apto pantallas chicas
 @media only screen and (max-width:767px){
     header{
-        width:80%
+        width:80%;
     }
     #contenedor1{
         width:90%;

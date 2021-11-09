@@ -1,6 +1,6 @@
 export class FuncionesParticipantes{
-// Mediante esta funcion mostramos los participantes con su saldo hasta el momento
-// Y el boton que permite agregar gastos 
+// Funcion para esconder el contenedor 1, actualiza el contenedor 2 con el array
+// Esconde los botones  de eliminar y confirmar
     mostrarParticipantes(array){
         $("#contenedor1").fadeOut(1000);
         $("#contenedorParticipantes").empty()
@@ -19,7 +19,7 @@ export class FuncionesParticipantes{
         $("#btnEliminar").hide();
         $("#btnConfirmar").hide()
     }
-// Funcion para el boton de agregar participante
+// Funcion para crear objeto Participante y pushearlo al array, tambien vacia el input
     agregarParticipante(clase1, general){
         let nombre= " ";
         let saldo= 0;
@@ -31,7 +31,7 @@ export class FuncionesParticipantes{
         general.personas.push(participante);
         $("#inputAgenda").val(" ")
     }
-// Funcion para crear la lista de los participantes de la agenda de gastos 
+// Funcion para Actualizar la lista de los participantes de la agenda de gastos 
     crearLista(array){
         $("#contenedorParticipantes").empty();
         array.forEach(elemento => {
